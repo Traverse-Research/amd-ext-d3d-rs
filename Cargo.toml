@@ -13,8 +13,11 @@ include = ["src", "LICENSE"]
 anyhow = "1"
 libloading = "0.8"
 
+[dependencies.windows-core]
+version = "0.50"
+
 [dependencies.windows]
-# TODO: Switch to windows-core when it is published
+# TODO: Generate these private bindings with windows-core as well?
 version = "0.48"
 features = [
     "implement",
@@ -25,3 +28,11 @@ features = [
 
 [workspace]
 members = ["api_gen"]
+
+[patch.crates-io]
+# Make windows compatible with windows-core
+windows = { git = "https://github.com/MarijnS95/windows-rs", rev = "66e3dbf29" }
+windows-core = { git = "https://github.com/MarijnS95/windows-rs", rev = "66e3dbf29" }
+# callback-query-interface
+windows-bindgen = { git = "https://github.com/MarijnS95/windows-rs", rev = "66e3dbf29" }
+windows-metadata = { git = "https://github.com/MarijnS95/windows-rs", rev = "66e3dbf29" }

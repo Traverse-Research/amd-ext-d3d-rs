@@ -6,28 +6,28 @@
     clippy::all
 )]
 #[repr(transparent)]
-pub struct IAmdExtD3DDevice(::windows::core::IUnknown);
+pub struct IAmdExtD3DDevice(::windows_core::IUnknown);
 impl IAmdExtD3DDevice {
     pub unsafe fn CreateGraphicsPipelineState<T>(
         &self,
         pamdextcreateinfo: *const AmdExtD3DCreateInfo,
         pdesc: *const ::windows::Win32::Graphics::Direct3D12::D3D12_GRAPHICS_PIPELINE_STATE_DESC,
-    ) -> ::windows::core::Result<T>
+    ) -> ::windows_core::Result<T>
     where
-        T: ::windows::core::ComInterface,
+        T: ::windows_core::ComInterface,
     {
         let mut result__ = ::std::ptr::null_mut();
-        (::windows::core::Interface::vtable(self).CreateGraphicsPipelineState)(
-            ::windows::core::Interface::as_raw(self),
+        (::windows_core::Interface::vtable(self).CreateGraphicsPipelineState)(
+            ::windows_core::Interface::as_raw(self),
             pamdextcreateinfo,
             pdesc,
-            &<T as ::windows::core::ComInterface>::IID,
+            &<T as ::windows_core::ComInterface>::IID,
             &mut result__,
         )
         .from_abi(result__)
     }
 }
-::windows::imp::interface_hierarchy!(IAmdExtD3DDevice, ::windows::core::IUnknown);
+::windows_core::imp::interface_hierarchy!(IAmdExtD3DDevice, ::windows_core::IUnknown);
 impl ::core::cmp::PartialEq for IAmdExtD3DDevice {
     fn eq(&self, other: &Self) -> bool {
         self.0 == other.0
@@ -39,7 +39,7 @@ impl ::core::fmt::Debug for IAmdExtD3DDevice {
         f.debug_tuple("IAmdExtD3DDevice").field(&self.0).finish()
     }
 }
-unsafe impl ::windows::core::Interface for IAmdExtD3DDevice {
+unsafe impl ::windows_core::Interface for IAmdExtD3DDevice {
     type Vtable = IAmdExtD3DDevice_Vtbl;
 }
 impl ::core::clone::Clone for IAmdExtD3DDevice {
@@ -47,86 +47,86 @@ impl ::core::clone::Clone for IAmdExtD3DDevice {
         Self(self.0.clone())
     }
 }
-unsafe impl ::windows::core::ComInterface for IAmdExtD3DDevice {
-    const IID: ::windows::core::GUID =
-        ::windows::core::GUID::from_u128(0x8104c0fc_7413_410f_8e83_aa617e908648);
+unsafe impl ::windows_core::ComInterface for IAmdExtD3DDevice {
+    const IID: ::windows_core::GUID =
+        ::windows_core::GUID::from_u128(0x8104c0fc_7413_410f_8e83_aa617e908648);
 }
 #[repr(C)]
 #[doc(hidden)]
 pub struct IAmdExtD3DDevice_Vtbl {
-    pub base__: ::windows::core::IUnknown_Vtbl,
+    pub base__: ::windows_core::IUnknown_Vtbl,
     pub CreateGraphicsPipelineState: unsafe extern "system" fn(
         this: *mut ::core::ffi::c_void,
         pamdextcreateinfo: *const AmdExtD3DCreateInfo,
         pdesc: *const ::windows::Win32::Graphics::Direct3D12::D3D12_GRAPHICS_PIPELINE_STATE_DESC,
-        riid: *const ::windows::core::GUID,
+        riid: *const ::windows_core::GUID,
         pppipelinestate: *mut *mut ::core::ffi::c_void,
-    ) -> ::windows::core::HRESULT,
+    ) -> ::windows_core::HRESULT,
 }
 #[repr(transparent)]
-pub struct IAmdExtD3DDevice1(::windows::core::IUnknown);
+pub struct IAmdExtD3DDevice1(::windows_core::IUnknown);
 impl IAmdExtD3DDevice1 {
     pub unsafe fn CreateGraphicsPipelineState<T>(
         &self,
         pamdextcreateinfo: *const AmdExtD3DCreateInfo,
         pdesc: *const ::windows::Win32::Graphics::Direct3D12::D3D12_GRAPHICS_PIPELINE_STATE_DESC,
-    ) -> ::windows::core::Result<T>
+    ) -> ::windows_core::Result<T>
     where
-        T: ::windows::core::ComInterface,
+        T: ::windows_core::ComInterface,
     {
         let mut result__ = ::std::ptr::null_mut();
-        (::windows::core::Interface::vtable(self)
+        (::windows_core::Interface::vtable(self)
             .base__
             .CreateGraphicsPipelineState)(
-            ::windows::core::Interface::as_raw(self),
+            ::windows_core::Interface::as_raw(self),
             pamdextcreateinfo,
             pdesc,
-            &<T as ::windows::core::ComInterface>::IID,
+            &<T as ::windows_core::ComInterface>::IID,
             &mut result__,
         )
         .from_abi(result__)
     }
     pub unsafe fn PushMarker<P0, P1>(&self, pgfxcmdlist: P0, pmarker: P1)
     where
-        P0: ::windows::core::IntoParam<
+        P0: ::windows_core::IntoParam<
             ::windows::Win32::Graphics::Direct3D12::ID3D12GraphicsCommandList,
         >,
-        P1: ::windows::core::IntoParam<::windows::core::PCSTR>,
+        P1: ::windows_core::IntoParam<::windows_core::PCSTR>,
     {
-        (::windows::core::Interface::vtable(self).PushMarker)(
-            ::windows::core::Interface::as_raw(self),
+        (::windows_core::Interface::vtable(self).PushMarker)(
+            ::windows_core::Interface::as_raw(self),
             pgfxcmdlist.into_param().abi(),
             pmarker.into_param().abi(),
         )
     }
     pub unsafe fn PopMarker<P0>(&self, pgfxcmdlist: P0)
     where
-        P0: ::windows::core::IntoParam<
+        P0: ::windows_core::IntoParam<
             ::windows::Win32::Graphics::Direct3D12::ID3D12GraphicsCommandList,
         >,
     {
-        (::windows::core::Interface::vtable(self).PopMarker)(
-            ::windows::core::Interface::as_raw(self),
+        (::windows_core::Interface::vtable(self).PopMarker)(
+            ::windows_core::Interface::as_raw(self),
             pgfxcmdlist.into_param().abi(),
         )
     }
     pub unsafe fn SetMarker<P0, P1>(&self, pgfxcmdlist: P0, pmarker: P1)
     where
-        P0: ::windows::core::IntoParam<
+        P0: ::windows_core::IntoParam<
             ::windows::Win32::Graphics::Direct3D12::ID3D12GraphicsCommandList,
         >,
-        P1: ::windows::core::IntoParam<::windows::core::PCSTR>,
+        P1: ::windows_core::IntoParam<::windows_core::PCSTR>,
     {
-        (::windows::core::Interface::vtable(self).SetMarker)(
-            ::windows::core::Interface::as_raw(self),
+        (::windows_core::Interface::vtable(self).SetMarker)(
+            ::windows_core::Interface::as_raw(self),
             pgfxcmdlist.into_param().abi(),
             pmarker.into_param().abi(),
         )
     }
 }
-::windows::imp::interface_hierarchy!(
+::windows_core::imp::interface_hierarchy!(
     IAmdExtD3DDevice1,
-    ::windows::core::IUnknown,
+    ::windows_core::IUnknown,
     IAmdExtD3DDevice
 );
 impl ::core::cmp::PartialEq for IAmdExtD3DDevice1 {
@@ -140,7 +140,7 @@ impl ::core::fmt::Debug for IAmdExtD3DDevice1 {
         f.debug_tuple("IAmdExtD3DDevice1").field(&self.0).finish()
     }
 }
-unsafe impl ::windows::core::Interface for IAmdExtD3DDevice1 {
+unsafe impl ::windows_core::Interface for IAmdExtD3DDevice1 {
     type Vtable = IAmdExtD3DDevice1_Vtbl;
 }
 impl ::core::clone::Clone for IAmdExtD3DDevice1 {
@@ -148,9 +148,9 @@ impl ::core::clone::Clone for IAmdExtD3DDevice1 {
         Self(self.0.clone())
     }
 }
-unsafe impl ::windows::core::ComInterface for IAmdExtD3DDevice1 {
-    const IID: ::windows::core::GUID =
-        ::windows::core::GUID::from_u128(0x4bbcaf68_eaf7_4fa4_b653_cb458c334a4e);
+unsafe impl ::windows_core::ComInterface for IAmdExtD3DDevice1 {
+    const IID: ::windows_core::GUID =
+        ::windows_core::GUID::from_u128(0x4bbcaf68_eaf7_4fa4_b653_cb458c334a4e);
 }
 #[repr(C)]
 #[doc(hidden)]
@@ -159,7 +159,7 @@ pub struct IAmdExtD3DDevice1_Vtbl {
     pub PushMarker: unsafe extern "system" fn(
         this: *mut ::core::ffi::c_void,
         pgfxcmdlist: *mut ::core::ffi::c_void,
-        pmarker: ::windows::core::PCSTR,
+        pmarker: ::windows_core::PCSTR,
     ),
     pub PopMarker: unsafe extern "system" fn(
         this: *mut ::core::ffi::c_void,
@@ -168,28 +168,28 @@ pub struct IAmdExtD3DDevice1_Vtbl {
     pub SetMarker: unsafe extern "system" fn(
         this: *mut ::core::ffi::c_void,
         pgfxcmdlist: *mut ::core::ffi::c_void,
-        pmarker: ::windows::core::PCSTR,
+        pmarker: ::windows_core::PCSTR,
     ),
 }
 #[repr(transparent)]
-pub struct IAmdExtD3DFactory(::windows::core::IUnknown);
+pub struct IAmdExtD3DFactory(::windows_core::IUnknown);
 impl IAmdExtD3DFactory {
-    pub unsafe fn CreateInterface<P0, T>(&self, pouter: P0) -> ::windows::core::Result<T>
+    pub unsafe fn CreateInterface<P0, T>(&self, pouter: P0) -> ::windows_core::Result<T>
     where
-        P0: ::windows::core::IntoParam<::windows::core::IUnknown>,
-        T: ::windows::core::ComInterface,
+        P0: ::windows_core::IntoParam<::windows_core::IUnknown>,
+        T: ::windows_core::ComInterface,
     {
         let mut result__ = ::std::ptr::null_mut();
-        (::windows::core::Interface::vtable(self).CreateInterface)(
-            ::windows::core::Interface::as_raw(self),
+        (::windows_core::Interface::vtable(self).CreateInterface)(
+            ::windows_core::Interface::as_raw(self),
             pouter.into_param().abi(),
-            &<T as ::windows::core::ComInterface>::IID,
+            &<T as ::windows_core::ComInterface>::IID,
             &mut result__,
         )
         .from_abi(result__)
     }
 }
-::windows::imp::interface_hierarchy!(IAmdExtD3DFactory, ::windows::core::IUnknown);
+::windows_core::imp::interface_hierarchy!(IAmdExtD3DFactory, ::windows_core::IUnknown);
 impl ::core::cmp::PartialEq for IAmdExtD3DFactory {
     fn eq(&self, other: &Self) -> bool {
         self.0 == other.0
@@ -201,7 +201,7 @@ impl ::core::fmt::Debug for IAmdExtD3DFactory {
         f.debug_tuple("IAmdExtD3DFactory").field(&self.0).finish()
     }
 }
-unsafe impl ::windows::core::Interface for IAmdExtD3DFactory {
+unsafe impl ::windows_core::Interface for IAmdExtD3DFactory {
     type Vtable = IAmdExtD3DFactory_Vtbl;
 }
 impl ::core::clone::Clone for IAmdExtD3DFactory {
@@ -209,20 +209,20 @@ impl ::core::clone::Clone for IAmdExtD3DFactory {
         Self(self.0.clone())
     }
 }
-unsafe impl ::windows::core::ComInterface for IAmdExtD3DFactory {
-    const IID: ::windows::core::GUID =
-        ::windows::core::GUID::from_u128(0x014937ec_9288_446f_a9ac_d75a8e3a984f);
+unsafe impl ::windows_core::ComInterface for IAmdExtD3DFactory {
+    const IID: ::windows_core::GUID =
+        ::windows_core::GUID::from_u128(0x014937ec_9288_446f_a9ac_d75a8e3a984f);
 }
 #[repr(C)]
 #[doc(hidden)]
 pub struct IAmdExtD3DFactory_Vtbl {
-    pub base__: ::windows::core::IUnknown_Vtbl,
+    pub base__: ::windows_core::IUnknown_Vtbl,
     pub CreateInterface: unsafe extern "system" fn(
         this: *mut ::core::ffi::c_void,
         pouter: *mut ::core::ffi::c_void,
-        riid: *const ::windows::core::GUID,
+        riid: *const ::windows_core::GUID,
         ppvobject: *mut *mut ::core::ffi::c_void,
-    ) -> ::windows::core::HRESULT,
+    ) -> ::windows_core::HRESULT,
 }
 #[repr(transparent)]
 #[derive(::core::cmp::PartialEq, ::core::cmp::Eq)]
@@ -240,8 +240,8 @@ impl ::core::default::Default for AmdExtD3DStructType {
         Self(0)
     }
 }
-impl ::windows::core::TypeKind for AmdExtD3DStructType {
-    type TypeKind = ::windows::core::CopyType;
+impl ::windows_core::TypeKind for AmdExtD3DStructType {
+    type TypeKind = ::windows_core::CopyType;
 }
 impl ::core::fmt::Debug for AmdExtD3DStructType {
     fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
@@ -267,8 +267,8 @@ impl ::core::fmt::Debug for AmdExtD3DCreateInfo {
             .finish()
     }
 }
-impl ::windows::core::TypeKind for AmdExtD3DCreateInfo {
-    type TypeKind = ::windows::core::CopyType;
+impl ::windows_core::TypeKind for AmdExtD3DCreateInfo {
+    type TypeKind = ::windows_core::CopyType;
 }
 impl ::core::cmp::PartialEq for AmdExtD3DCreateInfo {
     fn eq(&self, other: &Self) -> bool {
@@ -300,8 +300,8 @@ impl ::core::fmt::Debug for AmdExtD3DPipelineCreateInfo {
             .finish()
     }
 }
-impl ::windows::core::TypeKind for AmdExtD3DPipelineCreateInfo {
-    type TypeKind = ::windows::core::CopyType;
+impl ::windows_core::TypeKind for AmdExtD3DPipelineCreateInfo {
+    type TypeKind = ::windows_core::CopyType;
 }
 impl ::core::cmp::PartialEq for AmdExtD3DPipelineCreateInfo {
     fn eq(&self, other: &Self) -> bool {
@@ -331,8 +331,8 @@ impl ::core::fmt::Debug for AmdExtD3DPipelineFlags {
             .finish()
     }
 }
-impl ::windows::core::TypeKind for AmdExtD3DPipelineFlags {
-    type TypeKind = ::windows::core::CopyType;
+impl ::windows_core::TypeKind for AmdExtD3DPipelineFlags {
+    type TypeKind = ::windows_core::CopyType;
 }
 impl ::core::cmp::PartialEq for AmdExtD3DPipelineFlags {
     fn eq(&self, other: &Self) -> bool {
@@ -347,38 +347,54 @@ impl ::core::default::Default for AmdExtD3DPipelineFlags {
 }
 pub type PFNAmdExtD3DCreateInterface = ::core::option::Option<
     unsafe extern "system" fn(
-        pouter: ::core::option::Option<::windows::core::IUnknown>,
-        riid: *const ::windows::core::GUID,
+        pouter: *mut ::core::ffi::c_void,
+        riid: *const ::windows_core::GUID,
         ppvobject: *mut *mut ::core::ffi::c_void,
-    ) -> ::windows::core::HRESULT,
+    ) -> ::windows_core::HRESULT,
 >;
+pub unsafe fn PFNAmdExtD3DCreateInterface<P0, T>(
+    func: &PFNAmdExtD3DCreateInterface,
+    pouter: P0,
+) -> ::windows::core::Result<T>
+where
+    P0: ::windows_core::IntoParam<::windows_core::IUnknown>,
+    T: ::windows::core::ComInterface,
+{
+    let mut result__ = ::std::ptr::null_mut();
+    (func.unwrap())(
+        pouter.into_param().abi(),
+        &<T as ::windows_core::ComInterface>::IID,
+        &mut result__,
+    )
+    .from_abi(result__)
+}
 pub trait IAmdExtD3DDevice_Impl: Sized {
     fn CreateGraphicsPipelineState(
         &self,
         pamdextcreateinfo: *const AmdExtD3DCreateInfo,
         pdesc: *const ::windows::Win32::Graphics::Direct3D12::D3D12_GRAPHICS_PIPELINE_STATE_DESC,
-        riid: *const ::windows::core::GUID,
+        riid: *const ::windows_core::GUID,
         pppipelinestate: *mut *mut ::core::ffi::c_void,
-    ) -> ::windows::core::Result<()>;
+    ) -> ::windows_core::Result<()>;
 }
-impl ::windows::core::RuntimeName for IAmdExtD3DDevice {}
+impl ::windows_core::RuntimeName for IAmdExtD3DDevice {}
 impl IAmdExtD3DDevice_Vtbl {
     pub const fn new<
-        Identity: ::windows::core::IUnknownImpl<Impl = Impl>,
+        Identity: ::windows_core::IUnknownImpl<Impl = Impl>,
         Impl: IAmdExtD3DDevice_Impl,
         const OFFSET: isize,
     >() -> IAmdExtD3DDevice_Vtbl {
         unsafe extern "system" fn CreateGraphicsPipelineState<
-            Identity: ::windows::core::IUnknownImpl<Impl = Impl>,
+            Identity: ::windows_core::IUnknownImpl<Impl = Impl>,
             Impl: IAmdExtD3DDevice_Impl,
             const OFFSET: isize,
         >(
             this: *mut ::core::ffi::c_void,
             pamdextcreateinfo: *const AmdExtD3DCreateInfo,
             pdesc : *const ::windows::Win32::Graphics::Direct3D12:: D3D12_GRAPHICS_PIPELINE_STATE_DESC,
-            riid: *const ::windows::core::GUID,
+            riid: *const ::windows_core::GUID,
             pppipelinestate: *mut *mut ::core::ffi::c_void,
-        ) -> ::windows::core::HRESULT {
+        ) -> ::windows_core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateGraphicsPipelineState(
@@ -390,12 +406,12 @@ impl IAmdExtD3DDevice_Vtbl {
             .into()
         }
         Self {
-            base__: ::windows::core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
+            base__: ::windows_core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
             CreateGraphicsPipelineState: CreateGraphicsPipelineState::<Identity, Impl, OFFSET>,
         }
     }
-    pub fn matches(iid: &windows::core::GUID) -> bool {
-        iid == &<IAmdExtD3DDevice as ::windows::core::ComInterface>::IID
+    pub fn matches(iid: &::windows_core::GUID) -> bool {
+        iid == &<IAmdExtD3DDevice as ::windows_core::ComInterface>::IID
     }
 }
 pub trait IAmdExtD3DDevice1_Impl: Sized + IAmdExtD3DDevice_Impl {
@@ -404,7 +420,7 @@ pub trait IAmdExtD3DDevice1_Impl: Sized + IAmdExtD3DDevice_Impl {
         pgfxcmdlist: ::core::option::Option<
             &::windows::Win32::Graphics::Direct3D12::ID3D12GraphicsCommandList,
         >,
-        pmarker: &::windows::core::PCSTR,
+        pmarker: &::windows_core::PCSTR,
     );
     fn PopMarker(
         &self,
@@ -417,34 +433,34 @@ pub trait IAmdExtD3DDevice1_Impl: Sized + IAmdExtD3DDevice_Impl {
         pgfxcmdlist: ::core::option::Option<
             &::windows::Win32::Graphics::Direct3D12::ID3D12GraphicsCommandList,
         >,
-        pmarker: &::windows::core::PCSTR,
+        pmarker: &::windows_core::PCSTR,
     );
 }
-impl ::windows::core::RuntimeName for IAmdExtD3DDevice1 {}
+impl ::windows_core::RuntimeName for IAmdExtD3DDevice1 {}
 impl IAmdExtD3DDevice1_Vtbl {
     pub const fn new<
-        Identity: ::windows::core::IUnknownImpl<Impl = Impl>,
+        Identity: ::windows_core::IUnknownImpl<Impl = Impl>,
         Impl: IAmdExtD3DDevice1_Impl,
         const OFFSET: isize,
     >() -> IAmdExtD3DDevice1_Vtbl {
         unsafe extern "system" fn PushMarker<
-            Identity: ::windows::core::IUnknownImpl<Impl = Impl>,
+            Identity: ::windows_core::IUnknownImpl<Impl = Impl>,
             Impl: IAmdExtD3DDevice1_Impl,
             const OFFSET: isize,
         >(
             this: *mut ::core::ffi::c_void,
             pgfxcmdlist: *mut ::core::ffi::c_void,
-            pmarker: ::windows::core::PCSTR,
+            pmarker: ::windows_core::PCSTR,
         ) {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.PushMarker(
-                ::windows::core::from_raw_borrowed(&pgfxcmdlist),
+                ::windows_core::from_raw_borrowed(&pgfxcmdlist),
                 ::core::mem::transmute(&pmarker),
             )
         }
         unsafe extern "system" fn PopMarker<
-            Identity: ::windows::core::IUnknownImpl<Impl = Impl>,
+            Identity: ::windows_core::IUnknownImpl<Impl = Impl>,
             Impl: IAmdExtD3DDevice1_Impl,
             const OFFSET: isize,
         >(
@@ -453,21 +469,21 @@ impl IAmdExtD3DDevice1_Vtbl {
         ) {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
-            this.PopMarker(::windows::core::from_raw_borrowed(&pgfxcmdlist))
+            this.PopMarker(::windows_core::from_raw_borrowed(&pgfxcmdlist))
         }
         unsafe extern "system" fn SetMarker<
-            Identity: ::windows::core::IUnknownImpl<Impl = Impl>,
+            Identity: ::windows_core::IUnknownImpl<Impl = Impl>,
             Impl: IAmdExtD3DDevice1_Impl,
             const OFFSET: isize,
         >(
             this: *mut ::core::ffi::c_void,
             pgfxcmdlist: *mut ::core::ffi::c_void,
-            pmarker: ::windows::core::PCSTR,
+            pmarker: ::windows_core::PCSTR,
         ) {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.SetMarker(
-                ::windows::core::from_raw_borrowed(&pgfxcmdlist),
+                ::windows_core::from_raw_borrowed(&pgfxcmdlist),
                 ::core::mem::transmute(&pmarker),
             )
         }
@@ -478,51 +494,51 @@ impl IAmdExtD3DDevice1_Vtbl {
             SetMarker: SetMarker::<Identity, Impl, OFFSET>,
         }
     }
-    pub fn matches(iid: &windows::core::GUID) -> bool {
-        iid == &<IAmdExtD3DDevice1 as ::windows::core::ComInterface>::IID
-            || iid == &<IAmdExtD3DDevice as ::windows::core::ComInterface>::IID
+    pub fn matches(iid: &::windows_core::GUID) -> bool {
+        iid == &<IAmdExtD3DDevice1 as ::windows_core::ComInterface>::IID
+            || iid == &<IAmdExtD3DDevice as ::windows_core::ComInterface>::IID
     }
 }
 pub trait IAmdExtD3DFactory_Impl: Sized {
     fn CreateInterface(
         &self,
-        pouter: ::core::option::Option<&::windows::core::IUnknown>,
-        riid: *const ::windows::core::GUID,
+        pouter: ::core::option::Option<&::windows_core::IUnknown>,
+        riid: *const ::windows_core::GUID,
         ppvobject: *mut *mut ::core::ffi::c_void,
-    ) -> ::windows::core::Result<()>;
+    ) -> ::windows_core::Result<()>;
 }
-impl ::windows::core::RuntimeName for IAmdExtD3DFactory {}
+impl ::windows_core::RuntimeName for IAmdExtD3DFactory {}
 impl IAmdExtD3DFactory_Vtbl {
     pub const fn new<
-        Identity: ::windows::core::IUnknownImpl<Impl = Impl>,
+        Identity: ::windows_core::IUnknownImpl<Impl = Impl>,
         Impl: IAmdExtD3DFactory_Impl,
         const OFFSET: isize,
     >() -> IAmdExtD3DFactory_Vtbl {
         unsafe extern "system" fn CreateInterface<
-            Identity: ::windows::core::IUnknownImpl<Impl = Impl>,
+            Identity: ::windows_core::IUnknownImpl<Impl = Impl>,
             Impl: IAmdExtD3DFactory_Impl,
             const OFFSET: isize,
         >(
             this: *mut ::core::ffi::c_void,
             pouter: *mut ::core::ffi::c_void,
-            riid: *const ::windows::core::GUID,
+            riid: *const ::windows_core::GUID,
             ppvobject: *mut *mut ::core::ffi::c_void,
-        ) -> ::windows::core::HRESULT {
+        ) -> ::windows_core::HRESULT {
             let this = (this as *const *const ()).offset(OFFSET) as *const Identity;
             let this = (*this).get_impl();
             this.CreateInterface(
-                ::windows::core::from_raw_borrowed(&pouter),
+                ::windows_core::from_raw_borrowed(&pouter),
                 ::core::mem::transmute_copy(&riid),
                 ::core::mem::transmute_copy(&ppvobject),
             )
             .into()
         }
         Self {
-            base__: ::windows::core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
+            base__: ::windows_core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
             CreateInterface: CreateInterface::<Identity, Impl, OFFSET>,
         }
     }
-    pub fn matches(iid: &windows::core::GUID) -> bool {
-        iid == &<IAmdExtD3DFactory as ::windows::core::ComInterface>::IID
+    pub fn matches(iid: &::windows_core::GUID) -> bool {
+        iid == &<IAmdExtD3DFactory as ::windows_core::ComInterface>::IID
     }
 }

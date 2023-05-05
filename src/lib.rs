@@ -27,17 +27,10 @@ impl AmdExtD3DDevice {
 
         let amd_create_interface = lib
             .get::<PFNAmdExtD3DCreateInterface>(b"AmdExtD3DCreateInterface\0")
-            .context("Could not find `AmdExtD3DCreateInterface` symbol in `amdxc64.dll`")?
-            .context("Symbol value (pointer) is NULL")?;
+            .context("Could not find `AmdExtD3DCreateInterface` symbol in `amdxc64.dll`")?;
 
-        // TODO: Try convincing the Windows maintainers again to have a helper (with all the proper annotations, IntoParam generics, and checks):
-        // https://github.com/microsoft/windows-rs/issues/1835
-        // I keep an updated revision on my branch:
-        // https://github.com/MarijnS95/windows-rs/commit/13033a0b6e09a66a72d6e02bc050046730af157c
-        let mut result__ = ::std::ptr::null_mut();
         let amd_factory: IAmdExtD3DFactory =
-            (amd_create_interface)(Some(device.clone()), &IAmdExtD3DFactory::IID, &mut result__)
-                .from_abi(result__)
+            PFNAmdExtD3DCreateInterface(&amd_create_interface, &device)
                 .context("While creating `IAmdExtD3DFactory`")?;
 
         let amd_device_object = amd_factory
