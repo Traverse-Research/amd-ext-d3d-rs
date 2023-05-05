@@ -26,7 +26,7 @@
 /**
 ***********************************************************************************************************************
 * @file  AmdExtD3D.h
-* @brief AMD D3D Exension API factory include file.
+* @brief AMD D3D Extension API factory include file.
 ***********************************************************************************************************************
 */
 #pragma once
@@ -42,13 +42,13 @@
  */
 
 
-// The app must use GetProcAddress, etc. to retrive this exported function
+// The app must use GetProcAddress, etc. to retrieve this exported function
 // The associated typedef provides a convenient way to define the function pointer
 HRESULT __cdecl AmdExtD3DCreateInterface(
-    IUnknown*   pOuter,     ///< [in] object on which to base this new interface; usually a D3D device
-    REFIID      riid,       ///< ID of the requested interface
-    void**      ppvObject); ///< [out] The result interface object
-typedef HRESULT (__cdecl *PFNAmdExtD3DCreateInterface)(IUnknown* pOuter, REFIID riid, void** ppvObject);
+    IUnknown*           pOuter,     ///< [in] object on which to base this new interface; usually a D3D device
+    REFIID              riid,       ///< ID of the requested interface
+    _COM_Outptr_ void** ppvObject); ///< [out] The result interface object
+typedef HRESULT (__cdecl *PFNAmdExtD3DCreateInterface)(IUnknown* pOuter, REFIID riid, _COM_Outptr_ void** ppvObject);
 
 /**
 ***********************************************************************************************************************
@@ -62,8 +62,8 @@ IAmdExtD3DFactory : public IUnknown
 {
 public:
     virtual HRESULT CreateInterface(
-        IUnknown* pOuter,           ///< [in] An object on which to base this new interface; the required object type
-                                    ///< is usually a device object but not always
-        REFIID    riid,             ///< The ID of the requested interface
-        void**    ppvObject) = 0;   ///< [out] The result interface object
+        IUnknown*           pOuter,           ///< [in] An object on which to base this new interface; the required object type
+                                              ///< is usually a device object but not always
+        REFIID              riid,             ///< The ID of the requested interface
+        _COM_Outptr_ void** ppvObject) = 0;   ///< [out] The result interface object
 };

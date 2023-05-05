@@ -25,9 +25,8 @@
 */
 
 #pragma once
-#include "unknwn.h"
+#include <unknwn.h>
 #include <d3d12.h>
-#include "AmdExtD3DDeviceApi.h"
 
 /**
 ***********************************************************************************************************************
@@ -88,7 +87,7 @@ public:
         const AmdExtD3DCreateInfo*                  pAmdExtCreateInfo,
         const D3D12_GRAPHICS_PIPELINE_STATE_DESC*   pDesc,
         REFIID                                      riid,
-        void**                                      ppPipelineState) = 0;
+        _COM_Outptr_ void**                         ppPipelineState) = 0;
 };
 
 /**
