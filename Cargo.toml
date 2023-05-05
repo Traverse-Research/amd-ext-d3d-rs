@@ -1,0 +1,25 @@
+[package]
+name = "amd-ext-d3d"
+version = "0.1.0"
+authors = ["Traverse Research <support@traverseresearch.nl>"]
+edition = "2021"
+license = "MIT"
+homepage = "https://traverseresearch.nl"
+repository = "https://github.com/Traverse-Research/amd-ext-d3d-rs"
+description = "Rust bindings for AMD's DirectX12 modified PIX3 RGP markers"
+
+[dependencies]
+libloading = "0.8"
+
+[dependencies.windows]
+# TODO: Switch to windows-core when it is published
+version = "0.48"
+features = [
+    "implement",
+    "Win32_Foundation",
+    "Win32_Graphics_Direct3D12",
+    "Win32_Graphics_Dxgi_Common",
+]
+
+[workspace]
+members = ["api_gen"]
