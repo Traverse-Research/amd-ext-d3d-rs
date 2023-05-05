@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.Windows.WinmdGenerator/0.52.65-preview">
+    <PropertyGroup Label="Globals">
+        <OutputWinmd>../.windows/winmd/Amd.Ext.D3D.winmd</OutputWinmd>
+        <WinmdVersion>1.0.0</WinmdVersion>
+        <AdditionalIncludes>AmdDxExt</AdditionalIncludes>
+    </PropertyGroup>
+    <ItemGroup>
+        <Partition Include="AmdExtD3D.cpp">
+            <TraverseFiles>AmdDxExt/AmdExtD3D.h;AmdDxExt/AmdExtD3DDeviceApi.h;AmdExtD3DCommandListMarkerApi/AmdExtD3DCommandListMarker.h</TraverseFiles>
+            <ExcludeFromCrossarch>true</ExcludeFromCrossarch>
+            <Namespace>Amd.Ext.D3D</Namespace>
+        </Partition>
+    </ItemGroup>
+    <Target Name="CopyWin32Metadata" AfterTargets="Build">
+        <Copy
+            SourceFiles="$(PkgMicrosoft_Windows_SDK_Win32Metadata)\Windows.Win32.winmd"
+            DestinationFiles="..\.windows\winmd\Windows.Win32.winmd" />
+    </Target>
+</Project>
