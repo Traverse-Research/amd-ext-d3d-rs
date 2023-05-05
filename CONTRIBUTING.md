@@ -29,3 +29,12 @@ From the root of the repository:
 ```sh
 dotnet build .metadata
 ```
+
+### Regenerate rust code
+
+TBD
+Or build script?
+
+```sh
+cargo run -p api_gen
+```

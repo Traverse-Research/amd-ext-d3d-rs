@@ -23,3 +23,26 @@ jobs:
         with:
           name: metadata
           path: .windows/winmd
+
+  generate-rust:
+    name: Generate Rust crate
+    runs-on: ubuntu-latest
+    needs: generate-winmd
+    steps:
+      - uses: actions/checkout@v3
+      - name: Clean
+        run: rm -rf .windows/winmd/ src/Amd/
+      - name: Download
+        uses: actions/download-artifact@v3
+        with:
+          name: metadata
+          path: .windows/winmd
+      - name: Generate
+        run: cargo r -p api_gen
+      - name: Upload crate source
+        uses: actions/upload-artifact@v3
+        with:
+          name: crate-source
+          path: src/
+      - name: Diff generated Rust code
+        run: test -z "$(git status --porcelain)" || (echo "::error::Generated files are different, please regenerate with cargo run -p api_gen!"; git diff; false)
