@@ -34,7 +34,7 @@ fn gen_tree(reader: &Reader, output: &std::path::Path, tree: &Tree) {
 
     let mut gen = windows_bindgen::Gen::new(reader);
     gen.namespace = tree.namespace;
-    gen.cfg = true;
+    gen.cfg = false;
     gen.doc = false;
 
     let mut tokens = windows_bindgen::namespace(&gen, tree);

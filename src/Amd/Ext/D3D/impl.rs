@@ -1,8 +1,3 @@
-#[cfg(all(
-    feature = "Win32_Foundation",
-    feature = "Win32_Graphics_Direct3D12",
-    feature = "Win32_Graphics_Dxgi_Common"
-))]
 pub trait IAmdExtD3DDevice_Impl: Sized {
     fn CreateGraphicsPipelineState(
         &self,
@@ -12,17 +7,7 @@ pub trait IAmdExtD3DDevice_Impl: Sized {
         pppipelinestate: *mut *mut ::core::ffi::c_void,
     ) -> ::windows::core::Result<()>;
 }
-#[cfg(all(
-    feature = "Win32_Foundation",
-    feature = "Win32_Graphics_Direct3D12",
-    feature = "Win32_Graphics_Dxgi_Common"
-))]
 impl ::windows::core::RuntimeName for IAmdExtD3DDevice {}
-#[cfg(all(
-    feature = "Win32_Foundation",
-    feature = "Win32_Graphics_Direct3D12",
-    feature = "Win32_Graphics_Dxgi_Common"
-))]
 impl IAmdExtD3DDevice_Vtbl {
     pub const fn new<
         Identity: ::windows::core::IUnknownImpl<Impl = Impl>,
@@ -59,11 +44,6 @@ impl IAmdExtD3DDevice_Vtbl {
         iid == &<IAmdExtD3DDevice as ::windows::core::ComInterface>::IID
     }
 }
-#[cfg(all(
-    feature = "Win32_Foundation",
-    feature = "Win32_Graphics_Direct3D12",
-    feature = "Win32_Graphics_Dxgi_Common"
-))]
 pub trait IAmdExtD3DDevice1_Impl: Sized + IAmdExtD3DDevice_Impl {
     fn PushMarker(
         &self,
@@ -86,17 +66,7 @@ pub trait IAmdExtD3DDevice1_Impl: Sized + IAmdExtD3DDevice_Impl {
         pmarker: &::windows::core::PCSTR,
     );
 }
-#[cfg(all(
-    feature = "Win32_Foundation",
-    feature = "Win32_Graphics_Direct3D12",
-    feature = "Win32_Graphics_Dxgi_Common"
-))]
 impl ::windows::core::RuntimeName for IAmdExtD3DDevice1 {}
-#[cfg(all(
-    feature = "Win32_Foundation",
-    feature = "Win32_Graphics_Direct3D12",
-    feature = "Win32_Graphics_Dxgi_Common"
-))]
 impl IAmdExtD3DDevice1_Vtbl {
     pub const fn new<
         Identity: ::windows::core::IUnknownImpl<Impl = Impl>,

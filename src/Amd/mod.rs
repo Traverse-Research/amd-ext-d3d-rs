@@ -5,7 +5,6 @@
     dead_code,
     clippy::all
 )]
-#[cfg(feature = "Ext")]
 pub mod Ext;
 #[cfg(feature = "implement")]
 ::core::include!("impl.rs");

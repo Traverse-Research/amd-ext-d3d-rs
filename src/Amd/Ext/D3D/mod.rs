@@ -8,11 +8,6 @@
 #[repr(transparent)]
 pub struct IAmdExtD3DDevice(::windows::core::IUnknown);
 impl IAmdExtD3DDevice {
-    #[cfg(all(
-        feature = "Win32_Foundation",
-        feature = "Win32_Graphics_Direct3D12",
-        feature = "Win32_Graphics_Dxgi_Common"
-    ))]
     pub unsafe fn CreateGraphicsPipelineState<T>(
         &self,
         pamdextcreateinfo: *const AmdExtD3DCreateInfo,
@@ -60,11 +55,6 @@ unsafe impl ::windows::core::ComInterface for IAmdExtD3DDevice {
 #[doc(hidden)]
 pub struct IAmdExtD3DDevice_Vtbl {
     pub base__: ::windows::core::IUnknown_Vtbl,
-    #[cfg(all(
-        feature = "Win32_Foundation",
-        feature = "Win32_Graphics_Direct3D12",
-        feature = "Win32_Graphics_Dxgi_Common"
-    ))]
     pub CreateGraphicsPipelineState: unsafe extern "system" fn(
         this: *mut ::core::ffi::c_void,
         pamdextcreateinfo: *const AmdExtD3DCreateInfo,
@@ -72,21 +62,10 @@ pub struct IAmdExtD3DDevice_Vtbl {
         riid: *const ::windows::core::GUID,
         pppipelinestate: *mut *mut ::core::ffi::c_void,
     ) -> ::windows::core::HRESULT,
-    #[cfg(not(all(
-        feature = "Win32_Foundation",
-        feature = "Win32_Graphics_Direct3D12",
-        feature = "Win32_Graphics_Dxgi_Common"
-    )))]
-    CreateGraphicsPipelineState: usize,
 }
 #[repr(transparent)]
 pub struct IAmdExtD3DDevice1(::windows::core::IUnknown);
 impl IAmdExtD3DDevice1 {
-    #[cfg(all(
-        feature = "Win32_Foundation",
-        feature = "Win32_Graphics_Direct3D12",
-        feature = "Win32_Graphics_Dxgi_Common"
-    ))]
     pub unsafe fn CreateGraphicsPipelineState<T>(
         &self,
         pamdextcreateinfo: *const AmdExtD3DCreateInfo,
@@ -107,7 +86,6 @@ impl IAmdExtD3DDevice1 {
         )
         .from_abi(result__)
     }
-    #[cfg(feature = "Win32_Graphics_Direct3D12")]
     pub unsafe fn PushMarker<P0, P1>(&self, pgfxcmdlist: P0, pmarker: P1)
     where
         P0: ::windows::core::IntoParam<
@@ -121,7 +99,6 @@ impl IAmdExtD3DDevice1 {
             pmarker.into_param().abi(),
         )
     }
-    #[cfg(feature = "Win32_Graphics_Direct3D12")]
     pub unsafe fn PopMarker<P0>(&self, pgfxcmdlist: P0)
     where
         P0: ::windows::core::IntoParam<
@@ -133,7 +110,6 @@ impl IAmdExtD3DDevice1 {
             pgfxcmdlist.into_param().abi(),
         )
     }
-    #[cfg(feature = "Win32_Graphics_Direct3D12")]
     pub unsafe fn SetMarker<P0, P1>(&self, pgfxcmdlist: P0, pmarker: P1)
     where
         P0: ::windows::core::IntoParam<
@@ -180,29 +156,20 @@ unsafe impl ::windows::core::ComInterface for IAmdExtD3DDevice1 {
 #[doc(hidden)]
 pub struct IAmdExtD3DDevice1_Vtbl {
     pub base__: IAmdExtD3DDevice_Vtbl,
-    #[cfg(feature = "Win32_Graphics_Direct3D12")]
     pub PushMarker: unsafe extern "system" fn(
         this: *mut ::core::ffi::c_void,
         pgfxcmdlist: *mut ::core::ffi::c_void,
         pmarker: ::windows::core::PCSTR,
     ),
-    #[cfg(not(feature = "Win32_Graphics_Direct3D12"))]
-    PushMarker: usize,
-    #[cfg(feature = "Win32_Graphics_Direct3D12")]
     pub PopMarker: unsafe extern "system" fn(
         this: *mut ::core::ffi::c_void,
         pgfxcmdlist: *mut ::core::ffi::c_void,
     ),
-    #[cfg(not(feature = "Win32_Graphics_Direct3D12"))]
-    PopMarker: usize,
-    #[cfg(feature = "Win32_Graphics_Direct3D12")]
     pub SetMarker: unsafe extern "system" fn(
         this: *mut ::core::ffi::c_void,
         pgfxcmdlist: *mut ::core::ffi::c_void,
         pmarker: ::windows::core::PCSTR,
     ),
-    #[cfg(not(feature = "Win32_Graphics_Direct3D12"))]
-    SetMarker: usize,
 }
 #[repr(transparent)]
 pub struct IAmdExtD3DFactory(::windows::core::IUnknown);
