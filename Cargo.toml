@@ -7,8 +7,10 @@ license = "MIT"
 homepage = "https://traverseresearch.nl"
 repository = "https://github.com/Traverse-Research/amd-ext-d3d-rs"
 description = "Rust bindings for AMD's DirectX12 modified PIX3 RGP markers"
+include = ["src", "LICENSE"]
 
 [dependencies]
+anyhow = "1"
 libloading = "0.8"
 
 [dependencies.windows]
