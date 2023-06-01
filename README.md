@@ -1,6 +1,6 @@
 # Rust bindings for AMD's DirectX12 RGP markers
 
-[![Actions Status](https://github.com/Traverse-Research/amd-ext-d3d-rs/workflows/Continuous%20integration/badge.svg)](https://github.com/Traverse-Research/amd-ext-d3d-rs/actions)
+[![Actions Status](https://github.com/Traverse-Research/amd-ext-d3d-rs/actions/workflows/ci.yml/badge.svg)](https://github.com/Traverse-Research/amd-ext-d3d-rs/actions/workflows/ci.yml)
 [![Latest version](https://img.shields.io/crates/v/amd-ext-d3d.svg)](https://crates.io/crates/amd-ext-d3d)
 [![Documentation](https://docs.rs/amd-ext-d3d/badge.svg)](https://docs.rs/amd-ext-d3d)
 [![Lines of code](https://tokei.rs/b1/github/Traverse-Research/amd-ext-d3d-rs)](https://github.com/Traverse-Research/amd-ext-d3d-rs)
