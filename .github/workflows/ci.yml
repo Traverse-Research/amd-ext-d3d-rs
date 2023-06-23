@@ -49,12 +49,14 @@ jobs:
         with:
           name: metadata
           path: .windows/winmd
+      - name: Install riddle
+        run: cargo install  --git https://github.com/MarijnS95/windows-rs --rev b73dee2f6 riddle
       - name: Generate
-        run: cargo r -p api_gen
+        run: riddle -etc bindings.txt
       - name: Upload crate source
         uses: actions/upload-artifact@v3
         with:
           name: crate-source
           path: src/
       - name: Diff generated Rust code
-        run: test -z "$(git status --porcelain -- '!.windows')" || (echo "::error::Generated files are different, please regenerate with cargo run -p api_gen!"; git diff; false)
+        run: test -z "$(git status --porcelain -- '!.windows')" || (echo "::error::Generated files are different, please regenerate with riddle -etc bindings.txt!"; git diff; false)

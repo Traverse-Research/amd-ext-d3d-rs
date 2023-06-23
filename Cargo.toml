@@ -26,13 +26,7 @@ features = [
     "Win32_Graphics_Dxgi_Common",
 ]
 
-[workspace]
-members = ["api_gen"]
-
 [patch.crates-io]
-# Make windows compatible with windows-core
-windows = { git = "https://github.com/MarijnS95/windows-rs", rev = "66e3dbf29" }
-windows-core = { git = "https://github.com/MarijnS95/windows-rs", rev = "66e3dbf29" }
-# callback-query-interface
-windows-bindgen = { git = "https://github.com/MarijnS95/windows-rs", rev = "66e3dbf29" }
-windows-metadata = { git = "https://github.com/MarijnS95/windows-rs", rev = "66e3dbf29" }
+# Make windows compatible with windows-core (callback-query-interface branch)
+windows = { git = "https://github.com/MarijnS95/windows-rs", rev = "b73dee2f6" }
+windows-core = { git = "https://github.com/MarijnS95/windows-rs", rev = "b73dee2f6" }
