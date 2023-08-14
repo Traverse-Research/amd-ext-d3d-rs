@@ -1,7 +1,7 @@
 # Rust bindings for AMD's DirectX12 RGP markers
 
 [![Actions Status](https://github.com/Traverse-Research/amd-ext-d3d-rs/actions/workflows/ci.yml/badge.svg)](https://github.com/Traverse-Research/amd-ext-d3d-rs/actions/workflows/ci.yml)
-[![Latest version](https://img.shields.io/crates/v/amd-ext-d3d.svg)](https://crates.io/crates/amd-ext-d3d)
+[![Latest version](https://img.shields.io/crates/v/amd-ext-d3d.svg?logo=rust)](https://crates.io/crates/amd-ext-d3d)
 [![Documentation](https://docs.rs/amd-ext-d3d/badge.svg)](https://docs.rs/amd-ext-d3d)
 [![Lines of code](https://tokei.rs/b1/github/Traverse-Research/amd-ext-d3d-rs)](https://github.com/Traverse-Research/amd-ext-d3d-rs)
 ![MIT](https://img.shields.io/badge/license-MIT-blue.svg)
@@ -25,8 +25,10 @@ While [upstream documentation] details how to embed these calls into existing PI
 ```rust,no_run
 use amd_ext_d3d::AmdExtD3DDevice;
 use std::ffi::CStr;
-use windows::core::CanInto;
-use windows::Win32::Graphics::Direct3D12::{ID3D12Device, ID3D12GraphicsCommandList};
+use windows::{
+    core::CanInto,
+    Win32::Graphics::Direct3D12::{ID3D12Device, ID3D12GraphicsCommandList},
+};
 
 let device: ID3D12Device = todo!("Open DirectX12 graphics device");
 let cmd_list: ID3D12GraphicsCommandList = todo!("device.CreateCommandList(...)");

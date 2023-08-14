@@ -53,9 +53,10 @@ impl AmdExtD3DDevice {
         &self,
         amd_ext_create_info: &AmdExtD3DCreateInfo,
         graphics_pipeline_state_desc: &Direct3D12::D3D12_GRAPHICS_PIPELINE_STATE_DESC,
-    ) -> windows::core::Result<T> {
+    ) -> Result<T> {
         self.amd_device_object
             .CreateGraphicsPipelineState(amd_ext_create_info, graphics_pipeline_state_desc)
+            .context("While calling `CreateGraphicsPipelineState`")
     }
 
     /// # Safety

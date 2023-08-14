@@ -1,0 +1,5 @@
+--in .windows/winmd/
+--out src/Amd.rs
+
+--filter
+    Amd
