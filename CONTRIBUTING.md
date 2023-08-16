@@ -35,6 +35,5 @@ dotnet build .metadata
 From the root of the repository:
 
 ```sh
-cargo install --git https://github.com/microsoft/windows-rs --rev f18811c riddle
-riddle --etc bindings.txt
+cargo run -p api_gen
 ```
