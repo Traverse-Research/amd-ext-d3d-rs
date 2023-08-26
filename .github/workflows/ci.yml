@@ -29,7 +29,7 @@ jobs:
           ((Resolve-Path "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\*\bin\Hostx64\x64")
             | Sort-Object -Descending | Select -First 1).ToString() >> $env:GITHUB_PATH
       - name: Generate
-        run:  dotnet build .metadata
+        run: dotnet build .metadata
       - name: Upload
         uses: actions/upload-artifact@v3
         with:
@@ -57,4 +57,4 @@ jobs:
           name: crate-source
           path: src/
       - name: Diff generated Rust code
-        run: test -z "$(git status --porcelain -- '!.windows')" || (echo "::error::Generated files are different, please regenerate with cargo run -p api_gen!"; git diff; false)
+        run: test -z "$(git status --porcelain -- '!.windows')" || (echo "::error::Generated files are different, please regenerate with cargo run -p api_gen!"; git status; false)
