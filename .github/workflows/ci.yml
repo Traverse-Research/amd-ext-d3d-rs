@@ -15,6 +15,15 @@ jobs:
       - name: Cargo test
         run: cargo test --workspace
 
+      - name: Install nightly Rust
+        uses: dtolnay/rust-toolchain@nightly
+
+      - name: Generate lockfile with minimal dependency versions
+        run: cargo +nightly generate-lockfile -Zminimal-versions
+
+      - name: Cargo clippy with minimal-versions
+        run: cargo +stable clippy --workspace --all-targets -- -D warnings
+
   generate-winmd:
     name: Generate winmd
     runs-on: windows-2022
