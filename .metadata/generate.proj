@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.Windows.WinmdGenerator/0.52.65-preview">
+<Project Sdk="Microsoft.Windows.WinmdGenerator/0.60.34-preview">
     <PropertyGroup Label="Globals">
         <OutputWinmd>../.windows/winmd/Amd.Ext.D3D.winmd</OutputWinmd>
         <WinmdVersion>1.0.0</WinmdVersion>
