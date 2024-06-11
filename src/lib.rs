@@ -4,7 +4,7 @@ use std::ffi::CStr;
 
 use anyhow::{Context, Result};
 use windows::{
-    core::{IUnknown, Interface, IntoParam, Type, PCSTR},
+    core::{IUnknown, Interface, Param, Type, PCSTR},
     Win32::Graphics::Direct3D12,
 };
 
@@ -30,7 +30,7 @@ impl AmdExtD3DDevice {
             .context("Could not find `AmdExtD3DCreateInterface` symbol in `amdxc64.dll`")?
             .context("Symbol value (pointer) is NULL")?;
 
-        // TODO: Try convincing the Windows maintainers again to have a helper (with all the proper annotations, IntoParam generics, and checks):
+        // TODO: Try convincing the Windows maintainers again to have a helper (with all the proper annotations, Param generics, and checks):
         // https://github.com/microsoft/windows-rs/issues/1835
         // I keep an updated revision on my branch:
         // https://github.com/MarijnS95/windows-rs/commit/13033a0b6e09a66a72d6e02bc050046730af157c
@@ -63,7 +63,7 @@ impl AmdExtD3DDevice {
     /// Calls an unsafe function on the Windows API.
     pub unsafe fn push_marker(
         &self,
-        gfx_cmd_list: impl IntoParam<Direct3D12::ID3D12GraphicsCommandList>,
+        gfx_cmd_list: impl Param<Direct3D12::ID3D12GraphicsCommandList>,
         marker: &CStr,
     ) {
         self.amd_device_object
@@ -74,7 +74,7 @@ impl AmdExtD3DDevice {
     /// Calls an unsafe function on the Windows API.
     pub unsafe fn pop_marker(
         &self,
-        gfx_cmd_list: impl IntoParam<Direct3D12::ID3D12GraphicsCommandList>,
+        gfx_cmd_list: impl Param<Direct3D12::ID3D12GraphicsCommandList>,
     ) {
         self.amd_device_object.PopMarker(gfx_cmd_list)
     }
@@ -83,7 +83,7 @@ impl AmdExtD3DDevice {
     /// Calls an unsafe function on the Windows API.
     pub unsafe fn set_marker(
         &self,
-        gfx_cmd_list: impl IntoParam<Direct3D12::ID3D12GraphicsCommandList>,
+        gfx_cmd_list: impl Param<Direct3D12::ID3D12GraphicsCommandList>,
         marker: &CStr,
     ) {
         self.amd_device_object
