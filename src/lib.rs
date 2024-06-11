@@ -4,7 +4,7 @@ use std::ffi::CStr;
 
 use anyhow::{Context, Result};
 use windows::{
-    core::{ComInterface, IUnknown, IntoParam, PCSTR},
+    core::{IUnknown, Interface, IntoParam, Type, PCSTR},
     Win32::Graphics::Direct3D12,
 };
 
@@ -37,7 +37,7 @@ impl AmdExtD3DDevice {
         let mut result__ = ::std::ptr::null_mut();
         let amd_factory: IAmdExtD3DFactory =
             (amd_create_interface)(Some(device.clone()), &IAmdExtD3DFactory::IID, &mut result__)
-                .from_abi(result__)
+                .and_then(|| Type::from_abi(result__))
                 .context("While creating `IAmdExtD3DFactory`")?;
 
         let amd_device_object = amd_factory
@@ -49,7 +49,7 @@ impl AmdExtD3DDevice {
 
     /// # Safety
     /// Calls an unsafe function on the Windows API.
-    pub unsafe fn create_graphics_pipeline_state<T: ComInterface>(
+    pub unsafe fn create_graphics_pipeline_state<T: Interface>(
         &self,
         amd_ext_create_info: &AmdExtD3DCreateInfo,
         graphics_pipeline_state_desc: &Direct3D12::D3D12_GRAPHICS_PIPELINE_STATE_DESC,

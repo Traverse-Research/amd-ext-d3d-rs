@@ -25,16 +25,14 @@ While [upstream documentation] details how to embed these calls into existing PI
 ```rust,no_run
 use amd_ext_d3d::AmdExtD3DDevice;
 use std::ffi::CStr;
-use windows::{
-    core::CanInto,
-    Win32::Graphics::Direct3D12::{ID3D12Device, ID3D12GraphicsCommandList},
-};
+use windows::Win32::Graphics::Direct3D12::{ID3D12Device, ID3D12GraphicsCommandList};
+
 
 let device: ID3D12Device = todo!("Open DirectX12 graphics device");
 let cmd_list: ID3D12GraphicsCommandList = todo!("device.CreateCommandList(...)");
 
 // Load the extension
-let amd_device = unsafe { AmdExtD3DDevice::new(device.can_clone_into()) }.unwrap();
+let amd_device = unsafe { AmdExtD3DDevice::new(device.into()) }.unwrap();
 
 let name = CStr::from_bytes_with_nul(b"My super cool GPU event!\0").unwrap();
 unsafe { amd_device.push_marker(&cmd_list, name) };
