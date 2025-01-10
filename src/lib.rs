@@ -8,9 +8,10 @@ use windows::{
     Win32::Graphics::Direct3D12,
 };
 
-mod Amd;
-pub use crate::Amd::Ext::D3D::AmdExtD3DCreateInfo;
-use crate::Amd::Ext::D3D::{IAmdExtD3DDevice1, IAmdExtD3DFactory, PFNAmdExtD3DCreateInterface};
+mod bindings;
+
+pub use bindings::Amd::Ext::D3D::AmdExtD3DCreateInfo;
+use bindings::Amd::Ext::D3D::{IAmdExtD3DDevice1, IAmdExtD3DFactory, PFNAmdExtD3DCreateInterface};
 
 #[derive(Clone, Debug)]
 pub struct AmdExtD3DDevice {
