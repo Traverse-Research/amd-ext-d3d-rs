@@ -16,7 +16,7 @@ libloading = "0.8"
 windows-core = ">=0.56, <=0.58"
 
 [dependencies.windows]
-version = ">=0.56, <=0.58"
+version = ">=0.56, <=0.59"
 features = [
     "implement",
     "Win32_Foundation",
