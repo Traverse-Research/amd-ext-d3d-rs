@@ -1,5 +1,9 @@
 --in .windows/winmd/
---out src/Amd.rs
+--out src/bindings.rs
 
 --filter
     Amd
+
+--reference
+    windows,skip-root,ID3D12GraphicsCommandList
+    windows,skip-root,D3D12_GRAPHICS_PIPELINE_STATE_DESC
