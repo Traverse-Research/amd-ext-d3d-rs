@@ -39,6 +39,122 @@ pub mod Amd {
             pub struct AmdExtD3DStructType(pub u32);
             pub const AmdExtD3DStructUnknown: AmdExtD3DStructType = AmdExtD3DStructType(0u32);
             windows_core::imp::define_interface!(
+                IAmdExtD3DCommandListMarker,
+                IAmdExtD3DCommandListMarker_Vtbl,
+                0x735f1f3a_555d_4f70_ab92_7db4a3ab1d28
+            );
+            windows_core::imp::interface_hierarchy!(
+                IAmdExtD3DCommandListMarker,
+                windows_core::IUnknown
+            );
+            impl IAmdExtD3DCommandListMarker {
+                pub unsafe fn PushMarker<P0>(&self, pmarker: P0)
+                where
+                    P0: windows_core::Param<windows_core::PCSTR>,
+                {
+                    unsafe {
+                        (windows_core::Interface::vtable(self).PushMarker)(
+                            windows_core::Interface::as_raw(self),
+                            pmarker.param().abi(),
+                        )
+                    }
+                }
+                pub unsafe fn PopMarker(&self) {
+                    unsafe {
+                        (windows_core::Interface::vtable(self).PopMarker)(
+                            windows_core::Interface::as_raw(self),
+                        )
+                    }
+                }
+                pub unsafe fn SetMarker<P0>(&self, pmarker: P0)
+                where
+                    P0: windows_core::Param<windows_core::PCSTR>,
+                {
+                    unsafe {
+                        (windows_core::Interface::vtable(self).SetMarker)(
+                            windows_core::Interface::as_raw(self),
+                            pmarker.param().abi(),
+                        )
+                    }
+                }
+            }
+            #[repr(C)]
+            #[doc(hidden)]
+            pub struct IAmdExtD3DCommandListMarker_Vtbl {
+                pub base__: windows_core::IUnknown_Vtbl,
+                pub PushMarker:
+                    unsafe extern "system" fn(*mut core::ffi::c_void, windows_core::PCSTR),
+                pub PopMarker: unsafe extern "system" fn(*mut core::ffi::c_void),
+                pub SetMarker:
+                    unsafe extern "system" fn(*mut core::ffi::c_void, windows_core::PCSTR),
+            }
+            pub trait IAmdExtD3DCommandListMarker_Impl: windows_core::IUnknownImpl {
+                fn PushMarker(&self, pmarker: &windows_core::PCSTR);
+                fn PopMarker(&self);
+                fn SetMarker(&self, pmarker: &windows_core::PCSTR);
+            }
+            impl IAmdExtD3DCommandListMarker_Vtbl {
+                pub const fn new<
+                    Identity: IAmdExtD3DCommandListMarker_Impl,
+                    const OFFSET: isize,
+                >() -> Self {
+                    unsafe extern "system" fn PushMarker<
+                        Identity: IAmdExtD3DCommandListMarker_Impl,
+                        const OFFSET: isize,
+                    >(
+                        this: *mut core::ffi::c_void,
+                        pmarker: windows_core::PCSTR,
+                    ) {
+                        unsafe {
+                            let this: &Identity =
+                                &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                            IAmdExtD3DCommandListMarker_Impl::PushMarker(
+                                this,
+                                core::mem::transmute(&pmarker),
+                            )
+                        }
+                    }
+                    unsafe extern "system" fn PopMarker<
+                        Identity: IAmdExtD3DCommandListMarker_Impl,
+                        const OFFSET: isize,
+                    >(
+                        this: *mut core::ffi::c_void,
+                    ) {
+                        unsafe {
+                            let this: &Identity =
+                                &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                            IAmdExtD3DCommandListMarker_Impl::PopMarker(this)
+                        }
+                    }
+                    unsafe extern "system" fn SetMarker<
+                        Identity: IAmdExtD3DCommandListMarker_Impl,
+                        const OFFSET: isize,
+                    >(
+                        this: *mut core::ffi::c_void,
+                        pmarker: windows_core::PCSTR,
+                    ) {
+                        unsafe {
+                            let this: &Identity =
+                                &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                            IAmdExtD3DCommandListMarker_Impl::SetMarker(
+                                this,
+                                core::mem::transmute(&pmarker),
+                            )
+                        }
+                    }
+                    Self {
+                        base__: windows_core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
+                        PushMarker: PushMarker::<Identity, OFFSET>,
+                        PopMarker: PopMarker::<Identity, OFFSET>,
+                        SetMarker: SetMarker::<Identity, OFFSET>,
+                    }
+                }
+                pub fn matches(iid: &windows_core::GUID) -> bool {
+                    iid == &<IAmdExtD3DCommandListMarker as windows_core::Interface>::IID
+                }
+            }
+            impl windows_core::RuntimeName for IAmdExtD3DCommandListMarker {}
+            windows_core::imp::define_interface!(
                 IAmdExtD3DDevice,
                 IAmdExtD3DDevice_Vtbl,
                 0x8104c0fc_7413_410f_8e83_aa617e908648
