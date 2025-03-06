@@ -21,7 +21,7 @@ pub struct AmdExtD3DDevice {
 impl AmdExtD3DDevice {
     /// # Safety
     /// Calls an unsafe function on the Windows API.
-    pub unsafe fn new(device: IUnknown) -> Result<Self> {
+    pub unsafe fn new(device: &IUnknown) -> Result<Self> {
         // TODO: Load and cache the library?
         let lib =
             libloading::Library::new("amdxc64.dll").context("Could not open `amdxc64.dll`")?;
@@ -36,13 +36,18 @@ impl AmdExtD3DDevice {
         // I keep an updated revision on my branch:
         // https://github.com/MarijnS95/windows-rs/commit/13033a0b6e09a66a72d6e02bc050046730af157c
         let mut result__ = ::std::ptr::null_mut();
-        let amd_factory: IAmdExtD3DFactory =
-            (amd_create_interface)(Some(device.clone()), &IAmdExtD3DFactory::IID, &mut result__)
-                .and_then(|| Type::from_abi(result__))
-                .context("While creating `IAmdExtD3DFactory`")?;
+        let amd_factory: IAmdExtD3DFactory = (amd_create_interface)(
+            // Windows internally uses a transmute_copy to construct a Ref<T>, which is the pointer
+            // value (Type::Abi) contained inside the COM object.
+            std::mem::transmute_copy(device),
+            &IAmdExtD3DFactory::IID,
+            &mut result__,
+        )
+        .and_then(|| Type::from_abi(result__))
+        .context("While creating `IAmdExtD3DFactory`")?;
 
         let amd_device_object = amd_factory
-            .CreateInterface(&device)
+            .CreateInterface(device)
             .context("While creating `IAmdExtD3DDevice1`")?;
 
         Ok(Self { amd_device_object })

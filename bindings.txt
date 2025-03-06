@@ -1,3 +1,4 @@
+--in default
 --in .windows/winmd/
 --out src/bindings.rs
 
@@ -5,5 +6,5 @@
     Amd
 
 --reference
-    windows,skip-root,ID3D12GraphicsCommandList
-    windows,skip-root,D3D12_GRAPHICS_PIPELINE_STATE_DESC
+    windows,skip-root,Windows.Win32.Graphics.Direct3D12.*
+    windows,skip-root,Windows.Win32.Graphics.Dxgi.Common.*

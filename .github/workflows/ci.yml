@@ -18,11 +18,16 @@ jobs:
       - name: Install nightly Rust
         uses: dtolnay/rust-toolchain@nightly
 
+      # Test minimal versions to ensure our version specifiers in Cargo.toml
+      # define a correct lower-bound, including all version ranges for the
+      # windows crate.
       - name: Generate lockfile with minimal dependency versions
         run: cargo +nightly generate-lockfile -Zminimal-versions
 
       - name: Cargo clippy with minimal-versions
-        run: cargo +stable clippy --workspace --all-targets -- -D warnings
+        # Exclude api_gen because it does not need to build on minimum versions.
+        # (there's breakage in serde_json 1.0.45 used by windows-bindgen)
+        run: cargo +stable clippy --workspace --exclude api_gen --all-targets -- -D warnings
 
   generate-winmd:
     name: Generate winmd
@@ -34,7 +39,7 @@ jobs:
       - name: Configure environment
         shell: pwsh
         run: |
-          "C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\x64" >> $env:GITHUB_PATH
+          "C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\x64" >> $env:GITHUB_PATH
           ((Resolve-Path "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\*\bin\Hostx64\x64")
             | Sort-Object -Descending | Select -First 1).ToString() >> $env:GITHUB_PATH
       - name: Generate
