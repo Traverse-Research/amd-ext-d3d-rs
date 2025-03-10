@@ -1,6 +1,6 @@
 #![doc = include_str!("../README.md")]
 
-use std::ffi::CStr;
+use std::{ffi::CStr, sync::Arc};
 
 use anyhow::{Context, Result};
 use windows::{
@@ -21,6 +21,8 @@ use bindings::Amd::Ext::D3D::{
 pub struct AmdExtD3DDevice {
     factory: IAmdExtD3DFactory,
     device_object: IAmdExtD3DDevice1,
+    // Keep the library opened, even though it already/always seems to be oped from the driver already.
+    _lib: Arc<libloading::Library>,
 }
 
 impl AmdExtD3DDevice {
@@ -34,7 +36,7 @@ impl AmdExtD3DDevice {
             libloading::Library::new("amdxc64.dll").context("Could not open `amdxc64.dll`")?;
 
         let amd_create_interface = lib
-            .get::<PFNAmdExtD3DCreateInterface>(b"AmdExtD3DCreateInterface\0")
+            .get::<PFNAmdExtD3DCreateInterface>(c"AmdExtD3DCreateInterface".to_bytes())
             .context("Could not find `AmdExtD3DCreateInterface` symbol in `amdxc64.dll`")?
             .context("Symbol value (pointer) is NULL")?;
 
@@ -62,6 +64,7 @@ impl AmdExtD3DDevice {
         Ok(Self {
             factory,
             device_object,
+            _lib: Arc::new(lib),
         })
     }
 
@@ -79,6 +82,7 @@ impl AmdExtD3DDevice {
 
         Ok(AmdExtD3DCommandListMarker {
             cmd_list_marker_object,
+            _lib: self._lib.clone(),
         })
     }
 
@@ -137,6 +141,7 @@ impl AmdExtD3DDevice {
 #[doc(alias = "IAmdExtD3DCommandListMarker")]
 pub struct AmdExtD3DCommandListMarker {
     cmd_list_marker_object: IAmdExtD3DCommandListMarker,
+    _lib: Arc<libloading::Library>,
 }
 
 impl AmdExtD3DCommandListMarker {
