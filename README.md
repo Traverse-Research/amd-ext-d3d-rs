@@ -20,7 +20,7 @@ Add this to your Cargo.toml:
 amd-ext-d3d = "0.3.1"
 ```
 
-While [upstream documentation] details how to embed these calls into existing PIX3 markers (behind a C `#derive`), you get to call them explicitly in Rust:
+While [upstream documentation] details how to embed these calls into existing PIX3 markers (behind a C `#define`), you get to call them explicitly in Rust:
 
 ```rust,no_run
 use amd_ext_d3d::AmdExtD3DDevice;

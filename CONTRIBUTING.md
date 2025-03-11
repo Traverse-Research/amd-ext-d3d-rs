@@ -1,9 +1,6 @@
 # Regenerating bindings
 
-## Source
-
-Bindings in [`AmdDxExt`](.metadata/AmdDxExt/) are taken from [`RadeonDeveloperToolSuite-2023-02-15-1051\samples\AmdDxExt`](https://gpuopen.com/introducing-radeon-developer-tool-suite/).
-TODO: Take them from <https://github.com/GPUOpen-Tools/common_src_amddxext> instead _if that is the correct upstream_.
+After updating the source, which includes [configuration files for the bindings and the upstream headers themselves](/.metadata) from <https://github.com/GPUOpen-Tools/common_src_amddxext>, both [the `.winmd`](/.windows/winmd/Amd.Ext.D3D.winmd) and [final Rust bindings](/src/bindings.rs) need to be regenerated. Follow these steps to regenerate the files locally or through automated CI setup steps.
 
 ## Regenerate via CI
 

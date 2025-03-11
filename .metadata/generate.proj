@@ -7,7 +7,13 @@
     </PropertyGroup>
     <ItemGroup>
         <Partition Include="AmdExtD3D.cpp">
-            <TraverseFiles>AmdDxExt/AmdExtD3D.h;AmdDxExt/AmdExtD3DDeviceApi.h;AmdDxExt/AmdExtD3DCommandListMarkerApi.h</TraverseFiles>
+            <TraverseFiles>
+AmdDxExt/AmdExtD3D.h;
+AmdDxExt/AmdExtD3DDeviceApi.h;
+AmdDxExt/AmdExtD3DCommandListMarkerApi.h;
+AmdDxExt/AmdExtGpaInterface.h;
+AmdDxExt/AmdExtGpaInterfaceApi.h;
+            </TraverseFiles>
             <ExcludeFromCrossarch>true</ExcludeFromCrossarch>
             <Namespace>Amd.Ext.D3D</Namespace>
         </Partition>

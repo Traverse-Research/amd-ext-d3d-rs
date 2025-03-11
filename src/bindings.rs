@@ -38,6 +38,183 @@ pub mod Amd {
             #[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
             pub struct AmdExtD3DStructType(pub u32);
             pub const AmdExtD3DStructUnknown: AmdExtD3DStructType = AmdExtD3DStructType(0u32);
+            #[repr(transparent)]
+            #[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
+            pub struct AmdExtDeviceClockMode(pub u32);
+            #[repr(C)]
+            #[derive(Clone, Copy)]
+            pub struct AmdExtGpaSampleConfig {
+                pub r#type: AmdExtGpaSampleType,
+                pub flags: AmdExtGpaSampleConfig_0,
+                pub sqShaderMask: AmdExtPerfExperimentShaderFlags,
+                pub perfCounters: AmdExtGpaSampleConfig_1,
+                pub sqtt: AmdExtGpaSampleConfig_2,
+                pub timing: AmdExtGpaSampleConfig_3,
+            }
+            impl Default for AmdExtGpaSampleConfig {
+                fn default() -> Self {
+                    unsafe { core::mem::zeroed() }
+                }
+            }
+            #[repr(C)]
+            #[derive(Clone, Copy)]
+            pub union AmdExtGpaSampleConfig_0 {
+                pub Anonymous: AmdExtGpaSampleConfig_0_0,
+                pub u32All: u32,
+            }
+            impl Default for AmdExtGpaSampleConfig_0 {
+                fn default() -> Self {
+                    unsafe { core::mem::zeroed() }
+                }
+            }
+            #[repr(C)]
+            #[derive(Clone, Copy, Debug, Default, PartialEq)]
+            pub struct AmdExtGpaSampleConfig_0_0 {
+                pub _bitfield: u32,
+            }
+            #[repr(C)]
+            #[derive(Clone, Copy, Debug, PartialEq)]
+            pub struct AmdExtGpaSampleConfig_1 {
+                pub numCounters: u32,
+                pub pIds: *const AmdExtPerfCounterId,
+                pub spmTraceSampleInterval: u32,
+                pub gpuMemoryLimit: u64,
+            }
+            impl Default for AmdExtGpaSampleConfig_1 {
+                fn default() -> Self {
+                    unsafe { core::mem::zeroed() }
+                }
+            }
+            #[repr(C)]
+            #[derive(Clone, Copy)]
+            pub struct AmdExtGpaSampleConfig_2 {
+                pub flags: AmdExtGpaSampleConfig_2_0,
+                pub seMask: u32,
+                pub gpuMemoryLimit: u64,
+            }
+            impl Default for AmdExtGpaSampleConfig_2 {
+                fn default() -> Self {
+                    unsafe { core::mem::zeroed() }
+                }
+            }
+            #[repr(C)]
+            #[derive(Clone, Copy)]
+            pub union AmdExtGpaSampleConfig_2_0 {
+                pub Anonymous: AmdExtGpaSampleConfig_2_0_0,
+                pub u32All: u32,
+            }
+            impl Default for AmdExtGpaSampleConfig_2_0 {
+                fn default() -> Self {
+                    unsafe { core::mem::zeroed() }
+                }
+            }
+            #[repr(C)]
+            #[derive(Clone, Copy, Debug, Default, PartialEq)]
+            pub struct AmdExtGpaSampleConfig_2_0_0 {
+                pub _bitfield: u32,
+            }
+            #[repr(C)]
+            #[derive(Clone, Copy, Debug, Default, PartialEq)]
+            pub struct AmdExtGpaSampleConfig_3 {
+                pub preSample: AmdExtHwPipePoint,
+                pub postSample: AmdExtHwPipePoint,
+            }
+            #[repr(transparent)]
+            #[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
+            pub struct AmdExtGpaSampleType(pub u32);
+            #[repr(transparent)]
+            #[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
+            pub struct AmdExtGpuBlock(pub u32);
+            #[repr(C)]
+            #[derive(Clone, Copy, Debug, Default, PartialEq)]
+            pub struct AmdExtGpuBlockPerfProperties {
+                pub available: u8,
+                pub instanceCount: u32,
+                pub maxEventId: u32,
+                pub maxGlobalOnlyCounters: u32,
+                pub maxCounters: u32,
+                pub maxSpmCounters: u32,
+            }
+            #[repr(transparent)]
+            #[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
+            pub struct AmdExtHwPipePoint(pub u32);
+            #[repr(C)]
+            #[derive(Clone, Copy, Debug, Default, PartialEq)]
+            pub struct AmdExtPerfCounterId {
+                pub block: AmdExtGpuBlock,
+                pub instance: u32,
+                pub eventId: u32,
+            }
+            #[repr(C)]
+            #[derive(Clone, Copy)]
+            pub struct AmdExtPerfExperimentProperties {
+                pub features: AmdExtPerfExperimentProperties_0,
+                pub maxSqttSeBufferSize: usize,
+                pub shaderEngineCount: u32,
+                pub blocks: [AmdExtGpuBlockPerfProperties; 49],
+            }
+            impl Default for AmdExtPerfExperimentProperties {
+                fn default() -> Self {
+                    unsafe { core::mem::zeroed() }
+                }
+            }
+            #[repr(C)]
+            #[derive(Clone, Copy)]
+            pub union AmdExtPerfExperimentProperties_0 {
+                pub Anonymous: AmdExtPerfExperimentProperties_0_0,
+                pub u32All: u32,
+            }
+            impl Default for AmdExtPerfExperimentProperties_0 {
+                fn default() -> Self {
+                    unsafe { core::mem::zeroed() }
+                }
+            }
+            #[repr(C)]
+            #[derive(Clone, Copy, Debug, Default, PartialEq)]
+            pub struct AmdExtPerfExperimentProperties_0_0 {
+                pub _bitfield: u32,
+            }
+            #[repr(transparent)]
+            #[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
+            pub struct AmdExtPerfExperimentShaderFlags(pub i32);
+            #[repr(C)]
+            #[derive(Clone, Copy, Debug, Default, PartialEq)]
+            pub struct AmdExtSetClockModeOutput {
+                pub memoryClockRatioToPeak: f32,
+                pub engineClockRatioToPeak: f32,
+            }
+            pub const Atc: AmdExtGpuBlock = AmdExtGpuBlock(26u32);
+            pub const AtcL2: AmdExtGpuBlock = AmdExtGpuBlock(27u32);
+            pub const Cb: AmdExtGpuBlock = AmdExtGpuBlock(14u32);
+            pub const Cha: AmdExtGpuBlock = AmdExtGpuBlock(39u32);
+            pub const Chc: AmdExtGpuBlock = AmdExtGpuBlock(40u32);
+            pub const Chcg: AmdExtGpuBlock = AmdExtGpuBlock(41u32);
+            pub const Count: AmdExtGpuBlock = AmdExtGpuBlock(49u32);
+            pub const Cpc: AmdExtGpuBlock = AmdExtGpuBlock(23u32);
+            pub const Cpf: AmdExtGpuBlock = AmdExtGpuBlock(0u32);
+            pub const Cpg: AmdExtGpuBlock = AmdExtGpuBlock(22u32);
+            pub const Cumulative: AmdExtGpaSampleType = AmdExtGpaSampleType(0u32);
+            pub const Db: AmdExtGpuBlock = AmdExtGpuBlock(13u32);
+            pub const Default: AmdExtDeviceClockMode = AmdExtDeviceClockMode(0u32);
+            pub const DfMall: AmdExtGpuBlock = AmdExtGpuBlock(48u32);
+            pub const Dma: AmdExtGpuBlock = AmdExtGpuBlock(20u32);
+            pub const Ea: AmdExtGpuBlock = AmdExtGpuBlock(29u32);
+            pub const Gcr: AmdExtGpuBlock = AmdExtGpuBlock(43u32);
+            pub const Gds: AmdExtGpuBlock = AmdExtGpuBlock(15u32);
+            pub const Ge: AmdExtGpuBlock = AmdExtGpuBlock(33u32);
+            pub const Ge1: AmdExtGpuBlock = AmdExtGpuBlock(33u32);
+            pub const GeDist: AmdExtGpuBlock = AmdExtGpuBlock(46u32);
+            pub const GeSe: AmdExtGpuBlock = AmdExtGpuBlock(47u32);
+            pub const Gl1a: AmdExtGpuBlock = AmdExtGpuBlock(34u32);
+            pub const Gl1c: AmdExtGpuBlock = AmdExtGpuBlock(35u32);
+            pub const Gl1cg: AmdExtGpuBlock = AmdExtGpuBlock(36u32);
+            pub const Gl2a: AmdExtGpuBlock = AmdExtGpuBlock(37u32);
+            pub const Gl2c: AmdExtGpuBlock = AmdExtGpuBlock(38u32);
+            pub const Grbm: AmdExtGpuBlock = AmdExtGpuBlock(17u32);
+            pub const GrbmSe: AmdExtGpuBlock = AmdExtGpuBlock(18u32);
+            pub const Gus: AmdExtGpuBlock = AmdExtGpuBlock(42u32);
+            pub const HwPipeBottom: AmdExtHwPipePoint = AmdExtHwPipePoint(7u32);
+            pub const HwPipeTop: AmdExtHwPipePoint = AmdExtHwPipePoint(0u32);
             windows_core::imp::define_interface!(
                 IAmdExtD3DCommandListMarker,
                 IAmdExtD3DCommandListMarker_Vtbl,
@@ -486,6 +663,640 @@ pub mod Amd {
                 }
             }
             impl windows_core::RuntimeName for IAmdExtD3DFactory {}
+            windows_core::imp::define_interface!(
+                IAmdExtGpaInterface,
+                IAmdExtGpaInterface_Vtbl,
+                0x16ae5721_7ed4_4292_9b50_b976df1347fe
+            );
+            windows_core::imp::interface_hierarchy!(IAmdExtGpaInterface, windows_core::IUnknown);
+            impl IAmdExtGpaInterface {
+                pub unsafe fn GetPerfExperimentProperties(
+                    &self,
+                    pproperties: *mut AmdExtPerfExperimentProperties,
+                ) -> windows_core::Result<()> {
+                    unsafe {
+                        (windows_core::Interface::vtable(self).GetPerfExperimentProperties)(
+                            windows_core::Interface::as_raw(self),
+                            pproperties as _,
+                        )
+                        .ok()
+                    }
+                }
+                pub unsafe fn SetClockMode(
+                    &self,
+                    clockmodeinput: AmdExtDeviceClockMode,
+                    pclockmodeoutput: *mut AmdExtSetClockModeOutput,
+                ) {
+                    unsafe {
+                        (windows_core::Interface::vtable(self).SetClockMode)(
+                            windows_core::Interface::as_raw(self),
+                            clockmodeinput,
+                            pclockmodeoutput as _,
+                        )
+                    }
+                }
+                pub unsafe fn CreateGpaSession(&self) -> Option<IAmdExtGpaSession> {
+                    unsafe {
+                        (windows_core::Interface::vtable(self).CreateGpaSession)(
+                            windows_core::Interface::as_raw(self),
+                        )
+                    }
+                }
+                pub unsafe fn CopyGpaSession<P0>(&self, psrc: P0) -> Option<IAmdExtGpaSession>
+                where
+                    P0: windows_core::Param<IAmdExtGpaSession>,
+                {
+                    unsafe {
+                        (windows_core::Interface::vtable(self).CopyGpaSession)(
+                            windows_core::Interface::as_raw(self),
+                            psrc.param().abi(),
+                        )
+                    }
+                }
+                pub unsafe fn DestroyGpaSession<P0>(&self, pextgpasession: P0)
+                where
+                    P0: windows_core::Param<IAmdExtGpaSession>,
+                {
+                    unsafe {
+                        (windows_core::Interface::vtable(self).DestroyGpaSession)(
+                            windows_core::Interface::as_raw(self),
+                            pextgpasession.param().abi(),
+                        )
+                    }
+                }
+            }
+            #[repr(C)]
+            #[doc(hidden)]
+            pub struct IAmdExtGpaInterface_Vtbl {
+                pub base__: windows_core::IUnknown_Vtbl,
+                pub GetPerfExperimentProperties: unsafe extern "system" fn(
+                    *mut core::ffi::c_void,
+                    *mut AmdExtPerfExperimentProperties,
+                )
+                    -> windows_core::HRESULT,
+                pub SetClockMode: unsafe extern "system" fn(
+                    *mut core::ffi::c_void,
+                    AmdExtDeviceClockMode,
+                    *mut AmdExtSetClockModeOutput,
+                ),
+                pub CreateGpaSession:
+                    unsafe extern "system" fn(*mut core::ffi::c_void) -> Option<IAmdExtGpaSession>,
+                pub CopyGpaSession: unsafe extern "system" fn(
+                    *mut core::ffi::c_void,
+                    *mut core::ffi::c_void,
+                )
+                    -> Option<IAmdExtGpaSession>,
+                pub DestroyGpaSession:
+                    unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void),
+            }
+            pub trait IAmdExtGpaInterface_Impl: windows_core::IUnknownImpl {
+                fn GetPerfExperimentProperties(
+                    &self,
+                    pproperties: *mut AmdExtPerfExperimentProperties,
+                ) -> windows_core::Result<()>;
+                fn SetClockMode(
+                    &self,
+                    clockmodeinput: AmdExtDeviceClockMode,
+                    pclockmodeoutput: *mut AmdExtSetClockModeOutput,
+                );
+                fn CreateGpaSession(&self) -> Option<IAmdExtGpaSession>;
+                fn CopyGpaSession(
+                    &self,
+                    psrc: windows_core::Ref<'_, IAmdExtGpaSession>,
+                ) -> Option<IAmdExtGpaSession>;
+                fn DestroyGpaSession(
+                    &self,
+                    pextgpasession: windows_core::Ref<'_, IAmdExtGpaSession>,
+                );
+            }
+            impl IAmdExtGpaInterface_Vtbl {
+                pub const fn new<Identity: IAmdExtGpaInterface_Impl, const OFFSET: isize>() -> Self
+                {
+                    unsafe extern "system" fn GetPerfExperimentProperties<
+                        Identity: IAmdExtGpaInterface_Impl,
+                        const OFFSET: isize,
+                    >(
+                        this: *mut core::ffi::c_void,
+                        pproperties: *mut AmdExtPerfExperimentProperties,
+                    ) -> windows_core::HRESULT {
+                        unsafe {
+                            let this: &Identity =
+                                &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                            IAmdExtGpaInterface_Impl::GetPerfExperimentProperties(
+                                this,
+                                core::mem::transmute_copy(&pproperties),
+                            )
+                            .into()
+                        }
+                    }
+                    unsafe extern "system" fn SetClockMode<
+                        Identity: IAmdExtGpaInterface_Impl,
+                        const OFFSET: isize,
+                    >(
+                        this: *mut core::ffi::c_void,
+                        clockmodeinput: AmdExtDeviceClockMode,
+                        pclockmodeoutput: *mut AmdExtSetClockModeOutput,
+                    ) {
+                        unsafe {
+                            let this: &Identity =
+                                &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                            IAmdExtGpaInterface_Impl::SetClockMode(
+                                this,
+                                core::mem::transmute_copy(&clockmodeinput),
+                                core::mem::transmute_copy(&pclockmodeoutput),
+                            )
+                        }
+                    }
+                    unsafe extern "system" fn CreateGpaSession<
+                        Identity: IAmdExtGpaInterface_Impl,
+                        const OFFSET: isize,
+                    >(
+                        this: *mut core::ffi::c_void,
+                    ) -> Option<IAmdExtGpaSession> {
+                        unsafe {
+                            let this: &Identity =
+                                &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                            IAmdExtGpaInterface_Impl::CreateGpaSession(this)
+                        }
+                    }
+                    unsafe extern "system" fn CopyGpaSession<
+                        Identity: IAmdExtGpaInterface_Impl,
+                        const OFFSET: isize,
+                    >(
+                        this: *mut core::ffi::c_void,
+                        psrc: *mut core::ffi::c_void,
+                    ) -> Option<IAmdExtGpaSession> {
+                        unsafe {
+                            let this: &Identity =
+                                &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                            IAmdExtGpaInterface_Impl::CopyGpaSession(
+                                this,
+                                core::mem::transmute_copy(&psrc),
+                            )
+                        }
+                    }
+                    unsafe extern "system" fn DestroyGpaSession<
+                        Identity: IAmdExtGpaInterface_Impl,
+                        const OFFSET: isize,
+                    >(
+                        this: *mut core::ffi::c_void,
+                        pextgpasession: *mut core::ffi::c_void,
+                    ) {
+                        unsafe {
+                            let this: &Identity =
+                                &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                            IAmdExtGpaInterface_Impl::DestroyGpaSession(
+                                this,
+                                core::mem::transmute_copy(&pextgpasession),
+                            )
+                        }
+                    }
+                    Self {
+                        base__: windows_core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
+                        GetPerfExperimentProperties: GetPerfExperimentProperties::<Identity, OFFSET>,
+                        SetClockMode: SetClockMode::<Identity, OFFSET>,
+                        CreateGpaSession: CreateGpaSession::<Identity, OFFSET>,
+                        CopyGpaSession: CopyGpaSession::<Identity, OFFSET>,
+                        DestroyGpaSession: DestroyGpaSession::<Identity, OFFSET>,
+                    }
+                }
+                pub fn matches(iid: &windows_core::GUID) -> bool {
+                    iid == &<IAmdExtGpaInterface as windows_core::Interface>::IID
+                }
+            }
+            impl windows_core::RuntimeName for IAmdExtGpaInterface {}
+            windows_core::imp::define_interface!(
+                IAmdExtGpaInterface2,
+                IAmdExtGpaInterface2_Vtbl,
+                0x802984f4_e529_4a4e_ac4d_a32b1197b55e
+            );
+            impl core::ops::Deref for IAmdExtGpaInterface2 {
+                type Target = IAmdExtGpaInterface;
+                fn deref(&self) -> &Self::Target {
+                    unsafe { core::mem::transmute(self) }
+                }
+            }
+            windows_core::imp::interface_hierarchy!(
+                IAmdExtGpaInterface2,
+                windows_core::IUnknown,
+                IAmdExtGpaInterface
+            );
+            impl IAmdExtGpaInterface2 {
+                pub unsafe fn GetPerfExperimentProperties2(
+                    &self,
+                    pproperties: *mut AmdExtPerfExperimentProperties,
+                    blockcount: AmdExtGpuBlock,
+                ) -> windows_core::Result<()> {
+                    unsafe {
+                        (windows_core::Interface::vtable(self).GetPerfExperimentProperties2)(
+                            windows_core::Interface::as_raw(self),
+                            pproperties as _,
+                            blockcount,
+                        )
+                        .ok()
+                    }
+                }
+            }
+            #[repr(C)]
+            #[doc(hidden)]
+            pub struct IAmdExtGpaInterface2_Vtbl {
+                pub base__: IAmdExtGpaInterface_Vtbl,
+                pub GetPerfExperimentProperties2:
+                    unsafe extern "system" fn(
+                        *mut core::ffi::c_void,
+                        *mut AmdExtPerfExperimentProperties,
+                        AmdExtGpuBlock,
+                    ) -> windows_core::HRESULT,
+            }
+            pub trait IAmdExtGpaInterface2_Impl: IAmdExtGpaInterface_Impl {
+                fn GetPerfExperimentProperties2(
+                    &self,
+                    pproperties: *mut AmdExtPerfExperimentProperties,
+                    blockcount: AmdExtGpuBlock,
+                ) -> windows_core::Result<()>;
+            }
+            impl IAmdExtGpaInterface2_Vtbl {
+                pub const fn new<Identity: IAmdExtGpaInterface2_Impl, const OFFSET: isize>() -> Self
+                {
+                    unsafe extern "system" fn GetPerfExperimentProperties2<
+                        Identity: IAmdExtGpaInterface2_Impl,
+                        const OFFSET: isize,
+                    >(
+                        this: *mut core::ffi::c_void,
+                        pproperties: *mut AmdExtPerfExperimentProperties,
+                        blockcount: AmdExtGpuBlock,
+                    ) -> windows_core::HRESULT {
+                        unsafe {
+                            let this: &Identity =
+                                &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                            IAmdExtGpaInterface2_Impl::GetPerfExperimentProperties2(
+                                this,
+                                core::mem::transmute_copy(&pproperties),
+                                core::mem::transmute_copy(&blockcount),
+                            )
+                            .into()
+                        }
+                    }
+                    Self {
+                        base__: IAmdExtGpaInterface_Vtbl::new::<Identity, OFFSET>(),
+                        GetPerfExperimentProperties2: GetPerfExperimentProperties2::<
+                            Identity,
+                            OFFSET,
+                        >,
+                    }
+                }
+                pub fn matches(iid: &windows_core::GUID) -> bool {
+                    iid == &<IAmdExtGpaInterface2 as windows_core::Interface>::IID
+                        || iid == &<IAmdExtGpaInterface as windows_core::Interface>::IID
+                }
+            }
+            impl windows_core::RuntimeName for IAmdExtGpaInterface2 {}
+            windows_core::imp::define_interface!(
+                IAmdExtGpaSession,
+                IAmdExtGpaSession_Vtbl,
+                0x10d00e78_dcbf_4210_be46_94bd222a332b
+            );
+            windows_core::imp::interface_hierarchy!(IAmdExtGpaSession, windows_core::IUnknown);
+            impl IAmdExtGpaSession {
+                pub unsafe fn Begin<P0>(&self, pgfxcmdlist: P0) -> windows_core::Result<()>
+                where
+                    P0: windows_core::Param<
+                        windows::Win32::Graphics::Direct3D12::ID3D12GraphicsCommandList,
+                    >,
+                {
+                    unsafe {
+                        (windows_core::Interface::vtable(self).Begin)(
+                            windows_core::Interface::as_raw(self),
+                            pgfxcmdlist.param().abi(),
+                        )
+                        .ok()
+                    }
+                }
+                pub unsafe fn End<P0>(&self, pgfxcmdlist: P0) -> windows_core::Result<()>
+                where
+                    P0: windows_core::Param<
+                        windows::Win32::Graphics::Direct3D12::ID3D12GraphicsCommandList,
+                    >,
+                {
+                    unsafe {
+                        (windows_core::Interface::vtable(self).End)(
+                            windows_core::Interface::as_raw(self),
+                            pgfxcmdlist.param().abi(),
+                        )
+                        .ok()
+                    }
+                }
+                pub unsafe fn BeginSample<P0>(
+                    &self,
+                    pgfxcmdlist: P0,
+                    config: *const AmdExtGpaSampleConfig,
+                ) -> u32
+                where
+                    P0: windows_core::Param<
+                        windows::Win32::Graphics::Direct3D12::ID3D12GraphicsCommandList,
+                    >,
+                {
+                    unsafe {
+                        (windows_core::Interface::vtable(self).BeginSample)(
+                            windows_core::Interface::as_raw(self),
+                            pgfxcmdlist.param().abi(),
+                            config,
+                        )
+                    }
+                }
+                pub unsafe fn EndSample<P0>(&self, pgfxcmdlist: P0, sampleid: u32)
+                where
+                    P0: windows_core::Param<
+                        windows::Win32::Graphics::Direct3D12::ID3D12GraphicsCommandList,
+                    >,
+                {
+                    unsafe {
+                        (windows_core::Interface::vtable(self).EndSample)(
+                            windows_core::Interface::as_raw(self),
+                            pgfxcmdlist.param().abi(),
+                            sampleid,
+                        )
+                    }
+                }
+                pub unsafe fn IsReady(&self) -> bool {
+                    unsafe {
+                        (windows_core::Interface::vtable(self).IsReady)(
+                            windows_core::Interface::as_raw(self),
+                        )
+                    }
+                }
+                pub unsafe fn GetResults(
+                    &self,
+                    sampleid: u32,
+                    psizeinbytes: *mut usize,
+                    pdata: Option<*mut core::ffi::c_void>,
+                ) -> windows_core::Result<()> {
+                    unsafe {
+                        (windows_core::Interface::vtable(self).GetResults)(
+                            windows_core::Interface::as_raw(self),
+                            sampleid,
+                            psizeinbytes as _,
+                            pdata.unwrap_or(core::mem::zeroed()) as _,
+                        )
+                        .ok()
+                    }
+                }
+                pub unsafe fn Reset(&self) -> windows_core::Result<()> {
+                    unsafe {
+                        (windows_core::Interface::vtable(self).Reset)(
+                            windows_core::Interface::as_raw(self),
+                        )
+                        .ok()
+                    }
+                }
+                pub unsafe fn CopyResults<P0>(&self, pgfxcmdlist: P0)
+                where
+                    P0: windows_core::Param<
+                        windows::Win32::Graphics::Direct3D12::ID3D12GraphicsCommandList,
+                    >,
+                {
+                    unsafe {
+                        (windows_core::Interface::vtable(self).CopyResults)(
+                            windows_core::Interface::as_raw(self),
+                            pgfxcmdlist.param().abi(),
+                        )
+                    }
+                }
+            }
+            #[repr(C)]
+            #[doc(hidden)]
+            pub struct IAmdExtGpaSession_Vtbl {
+                pub base__: windows_core::IUnknown_Vtbl,
+                pub Begin: unsafe extern "system" fn(
+                    *mut core::ffi::c_void,
+                    *mut core::ffi::c_void,
+                ) -> windows_core::HRESULT,
+                pub End: unsafe extern "system" fn(
+                    *mut core::ffi::c_void,
+                    *mut core::ffi::c_void,
+                ) -> windows_core::HRESULT,
+                pub BeginSample: unsafe extern "system" fn(
+                    *mut core::ffi::c_void,
+                    *mut core::ffi::c_void,
+                    *const AmdExtGpaSampleConfig,
+                ) -> u32,
+                pub EndSample:
+                    unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, u32),
+                pub IsReady: unsafe extern "system" fn(*mut core::ffi::c_void) -> bool,
+                pub GetResults: unsafe extern "system" fn(
+                    *mut core::ffi::c_void,
+                    u32,
+                    *mut usize,
+                    *mut core::ffi::c_void,
+                ) -> windows_core::HRESULT,
+                pub Reset:
+                    unsafe extern "system" fn(*mut core::ffi::c_void) -> windows_core::HRESULT,
+                pub CopyResults:
+                    unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void),
+            }
+            pub trait IAmdExtGpaSession_Impl: windows_core::IUnknownImpl {
+                fn Begin(
+                    &self,
+                    pgfxcmdlist: windows_core::Ref<
+                        '_,
+                        windows::Win32::Graphics::Direct3D12::ID3D12GraphicsCommandList,
+                    >,
+                ) -> windows_core::Result<()>;
+                fn End(
+                    &self,
+                    pgfxcmdlist: windows_core::Ref<
+                        '_,
+                        windows::Win32::Graphics::Direct3D12::ID3D12GraphicsCommandList,
+                    >,
+                ) -> windows_core::Result<()>;
+                fn BeginSample(
+                    &self,
+                    pgfxcmdlist: windows_core::Ref<
+                        '_,
+                        windows::Win32::Graphics::Direct3D12::ID3D12GraphicsCommandList,
+                    >,
+                    config: *const AmdExtGpaSampleConfig,
+                ) -> u32;
+                fn EndSample(
+                    &self,
+                    pgfxcmdlist: windows_core::Ref<
+                        '_,
+                        windows::Win32::Graphics::Direct3D12::ID3D12GraphicsCommandList,
+                    >,
+                    sampleid: u32,
+                );
+                fn IsReady(&self) -> bool;
+                fn GetResults(
+                    &self,
+                    sampleid: u32,
+                    psizeinbytes: *mut usize,
+                    pdata: *mut core::ffi::c_void,
+                ) -> windows_core::Result<()>;
+                fn Reset(&self) -> windows_core::Result<()>;
+                fn CopyResults(
+                    &self,
+                    pgfxcmdlist: windows_core::Ref<
+                        '_,
+                        windows::Win32::Graphics::Direct3D12::ID3D12GraphicsCommandList,
+                    >,
+                );
+            }
+            impl IAmdExtGpaSession_Vtbl {
+                pub const fn new<Identity: IAmdExtGpaSession_Impl, const OFFSET: isize>() -> Self {
+                    unsafe extern "system" fn Begin<
+                        Identity: IAmdExtGpaSession_Impl,
+                        const OFFSET: isize,
+                    >(
+                        this: *mut core::ffi::c_void,
+                        pgfxcmdlist: *mut core::ffi::c_void,
+                    ) -> windows_core::HRESULT {
+                        unsafe {
+                            let this: &Identity =
+                                &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                            IAmdExtGpaSession_Impl::Begin(
+                                this,
+                                core::mem::transmute_copy(&pgfxcmdlist),
+                            )
+                            .into()
+                        }
+                    }
+                    unsafe extern "system" fn End<
+                        Identity: IAmdExtGpaSession_Impl,
+                        const OFFSET: isize,
+                    >(
+                        this: *mut core::ffi::c_void,
+                        pgfxcmdlist: *mut core::ffi::c_void,
+                    ) -> windows_core::HRESULT {
+                        unsafe {
+                            let this: &Identity =
+                                &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                            IAmdExtGpaSession_Impl::End(
+                                this,
+                                core::mem::transmute_copy(&pgfxcmdlist),
+                            )
+                            .into()
+                        }
+                    }
+                    unsafe extern "system" fn BeginSample<
+                        Identity: IAmdExtGpaSession_Impl,
+                        const OFFSET: isize,
+                    >(
+                        this: *mut core::ffi::c_void,
+                        pgfxcmdlist: *mut core::ffi::c_void,
+                        config: *const AmdExtGpaSampleConfig,
+                    ) -> u32 {
+                        unsafe {
+                            let this: &Identity =
+                                &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                            IAmdExtGpaSession_Impl::BeginSample(
+                                this,
+                                core::mem::transmute_copy(&pgfxcmdlist),
+                                core::mem::transmute_copy(&config),
+                            )
+                        }
+                    }
+                    unsafe extern "system" fn EndSample<
+                        Identity: IAmdExtGpaSession_Impl,
+                        const OFFSET: isize,
+                    >(
+                        this: *mut core::ffi::c_void,
+                        pgfxcmdlist: *mut core::ffi::c_void,
+                        sampleid: u32,
+                    ) {
+                        unsafe {
+                            let this: &Identity =
+                                &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                            IAmdExtGpaSession_Impl::EndSample(
+                                this,
+                                core::mem::transmute_copy(&pgfxcmdlist),
+                                core::mem::transmute_copy(&sampleid),
+                            )
+                        }
+                    }
+                    unsafe extern "system" fn IsReady<
+                        Identity: IAmdExtGpaSession_Impl,
+                        const OFFSET: isize,
+                    >(
+                        this: *mut core::ffi::c_void,
+                    ) -> bool {
+                        unsafe {
+                            let this: &Identity =
+                                &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                            IAmdExtGpaSession_Impl::IsReady(this)
+                        }
+                    }
+                    unsafe extern "system" fn GetResults<
+                        Identity: IAmdExtGpaSession_Impl,
+                        const OFFSET: isize,
+                    >(
+                        this: *mut core::ffi::c_void,
+                        sampleid: u32,
+                        psizeinbytes: *mut usize,
+                        pdata: *mut core::ffi::c_void,
+                    ) -> windows_core::HRESULT {
+                        unsafe {
+                            let this: &Identity =
+                                &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                            IAmdExtGpaSession_Impl::GetResults(
+                                this,
+                                core::mem::transmute_copy(&sampleid),
+                                core::mem::transmute_copy(&psizeinbytes),
+                                core::mem::transmute_copy(&pdata),
+                            )
+                            .into()
+                        }
+                    }
+                    unsafe extern "system" fn Reset<
+                        Identity: IAmdExtGpaSession_Impl,
+                        const OFFSET: isize,
+                    >(
+                        this: *mut core::ffi::c_void,
+                    ) -> windows_core::HRESULT {
+                        unsafe {
+                            let this: &Identity =
+                                &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                            IAmdExtGpaSession_Impl::Reset(this).into()
+                        }
+                    }
+                    unsafe extern "system" fn CopyResults<
+                        Identity: IAmdExtGpaSession_Impl,
+                        const OFFSET: isize,
+                    >(
+                        this: *mut core::ffi::c_void,
+                        pgfxcmdlist: *mut core::ffi::c_void,
+                    ) {
+                        unsafe {
+                            let this: &Identity =
+                                &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                            IAmdExtGpaSession_Impl::CopyResults(
+                                this,
+                                core::mem::transmute_copy(&pgfxcmdlist),
+                            )
+                        }
+                    }
+                    Self {
+                        base__: windows_core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
+                        Begin: Begin::<Identity, OFFSET>,
+                        End: End::<Identity, OFFSET>,
+                        BeginSample: BeginSample::<Identity, OFFSET>,
+                        EndSample: EndSample::<Identity, OFFSET>,
+                        IsReady: IsReady::<Identity, OFFSET>,
+                        GetResults: GetResults::<Identity, OFFSET>,
+                        Reset: Reset::<Identity, OFFSET>,
+                        CopyResults: CopyResults::<Identity, OFFSET>,
+                    }
+                }
+                pub fn matches(iid: &windows_core::GUID) -> bool {
+                    iid == &<IAmdExtGpaSession as windows_core::Interface>::IID
+                }
+            }
+            impl windows_core::RuntimeName for IAmdExtGpaSession {}
+            pub const Ia: AmdExtGpuBlock = AmdExtGpuBlock(1u32);
+            pub const Mc: AmdExtGpuBlock = AmdExtGpuBlock(21u32);
+            pub const McVmL2: AmdExtGpuBlock = AmdExtGpuBlock(28u32);
+            pub const MinimumEngine: AmdExtDeviceClockMode = AmdExtDeviceClockMode(4u32);
+            pub const MinimumMemory: AmdExtDeviceClockMode = AmdExtDeviceClockMode(3u32);
+            pub const None: AmdExtGpaSampleType = AmdExtGpaSampleType(15u32);
             pub type PFNAmdExtD3DCreateInterface = Option<
                 unsafe extern "system" fn(
                     pouter: windows_core::Ref<'_, windows_core::IUnknown>,
@@ -493,6 +1304,47 @@ pub mod Amd {
                     ppvobject: *mut *mut core::ffi::c_void,
                 ) -> windows_core::HRESULT,
             >;
+            pub const Pa: AmdExtGpuBlock = AmdExtGpuBlock(3u32);
+            pub const Peak: AmdExtDeviceClockMode = AmdExtDeviceClockMode(5u32);
+            pub const PerfShaderMaskAll: AmdExtPerfExperimentShaderFlags =
+                AmdExtPerfExperimentShaderFlags(127i32);
+            pub const PerfShaderMaskCs: AmdExtPerfExperimentShaderFlags =
+                AmdExtPerfExperimentShaderFlags(64i32);
+            pub const PerfShaderMaskEs: AmdExtPerfExperimentShaderFlags =
+                AmdExtPerfExperimentShaderFlags(8i32);
+            pub const PerfShaderMaskGs: AmdExtPerfExperimentShaderFlags =
+                AmdExtPerfExperimentShaderFlags(4i32);
+            pub const PerfShaderMaskHs: AmdExtPerfExperimentShaderFlags =
+                AmdExtPerfExperimentShaderFlags(16i32);
+            pub const PerfShaderMaskLs: AmdExtPerfExperimentShaderFlags =
+                AmdExtPerfExperimentShaderFlags(32i32);
+            pub const PerfShaderMaskPs: AmdExtPerfExperimentShaderFlags =
+                AmdExtPerfExperimentShaderFlags(1i32);
+            pub const PerfShaderMaskVs: AmdExtPerfExperimentShaderFlags =
+                AmdExtPerfExperimentShaderFlags(2i32);
+            pub const Ph: AmdExtGpuBlock = AmdExtGpuBlock(44u32);
+            pub const Profiling: AmdExtDeviceClockMode = AmdExtDeviceClockMode(2u32);
+            pub const Query: AmdExtGpaSampleType = AmdExtGpaSampleType(3u32);
+            pub const Rlc: AmdExtGpuBlock = AmdExtGpuBlock(19u32);
+            pub const Rmi: AmdExtGpuBlock = AmdExtGpuBlock(31u32);
+            pub const Rpb: AmdExtGpuBlock = AmdExtGpuBlock(30u32);
+            pub const Sc: AmdExtGpuBlock = AmdExtGpuBlock(4u32);
+            pub const Spi: AmdExtGpuBlock = AmdExtGpuBlock(5u32);
+            pub const Sq: AmdExtGpuBlock = AmdExtGpuBlock(6u32);
+            pub const Srbm: AmdExtGpuBlock = AmdExtGpuBlock(16u32);
+            pub const Sx: AmdExtGpuBlock = AmdExtGpuBlock(7u32);
+            pub const Ta: AmdExtGpuBlock = AmdExtGpuBlock(8u32);
+            pub const Tca: AmdExtGpuBlock = AmdExtGpuBlock(12u32);
+            pub const Tcc: AmdExtGpuBlock = AmdExtGpuBlock(11u32);
+            pub const Tcp: AmdExtGpuBlock = AmdExtGpuBlock(10u32);
+            pub const Tcs: AmdExtGpuBlock = AmdExtGpuBlock(25u32);
+            pub const Td: AmdExtGpuBlock = AmdExtGpuBlock(9u32);
+            pub const Timing: AmdExtGpaSampleType = AmdExtGpaSampleType(2u32);
+            pub const Trace: AmdExtGpaSampleType = AmdExtGpaSampleType(1u32);
+            pub const Umcch: AmdExtGpuBlock = AmdExtGpuBlock(32u32);
+            pub const UtcL1: AmdExtGpuBlock = AmdExtGpuBlock(45u32);
+            pub const Vgt: AmdExtGpuBlock = AmdExtGpuBlock(2u32);
+            pub const Wd: AmdExtGpuBlock = AmdExtGpuBlock(24u32);
         }
     }
 }

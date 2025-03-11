@@ -1,0 +1,4 @@
+[submodule ".metadata/AmdDxExt"]
+	path = .metadata/AmdDxExt
+	# https://github.com/GPUOpen-Tools/common_src_amddxext/pull/1
+	url = https://github.com/MarijnS95/common_src_amddxext
