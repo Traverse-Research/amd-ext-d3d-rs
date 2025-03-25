@@ -32,7 +32,7 @@ let device: ID3D12Device = todo!("Open DirectX12 graphics device");
 let cmd_list: ID3D12GraphicsCommandList = todo!("device.CreateCommandList(...)");
 
 // Load the extension
-let amd_device = unsafe { AmdExtD3DDevice::new(device.into()) }.unwrap();
+let amd_device = unsafe { AmdExtD3DDevice::new((&device).into()) }.unwrap();
 
 let name = CStr::from_bytes_with_nul(b"My super cool GPU event!\0").unwrap();
 unsafe { amd_device.push_marker(&cmd_list, name) };
@@ -41,7 +41,7 @@ unsafe { amd_device.pop_marker(&cmd_list) };
 ```
 
 [Radeon GPU Profiler]: https://gpuopen.com/rgp/
-[upstream documentation]: https://radeon-gpuprofiler.readthedocs.io/en/latest/#directx12-user-markers
+[upstream documentation]: https://gpuopen.com/manuals/rgp_manual/rgp_manual-user_debug_markers/#directx12-user-markers
 
 ## Contributing
 
