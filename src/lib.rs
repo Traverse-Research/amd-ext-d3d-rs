@@ -14,6 +14,7 @@ pub use bindings::Amd::Ext::D3D::AmdExtD3DCreateInfo;
 use bindings::Amd::Ext::D3D::{IAmdExtD3DDevice1, IAmdExtD3DFactory, PFNAmdExtD3DCreateInterface};
 
 #[derive(Clone, Debug)]
+#[doc(alias = "IAmdExtD3DDevice1")]
 pub struct AmdExtD3DDevice {
     amd_device_object: IAmdExtD3DDevice1,
 }
@@ -21,6 +22,7 @@ pub struct AmdExtD3DDevice {
 impl AmdExtD3DDevice {
     /// # Safety
     /// Calls an unsafe function on the Windows API.
+    #[doc(alias = "AmdExtD3DCreateInterface")]
     pub unsafe fn new(device: &IUnknown) -> Result<Self> {
         // TODO: Load and cache the library?
         let lib =
@@ -55,6 +57,7 @@ impl AmdExtD3DDevice {
 
     /// # Safety
     /// Calls an unsafe function on the Windows API.
+    #[doc(alias = "CreateGraphicsPipelineState")]
     pub unsafe fn create_graphics_pipeline_state<T: Interface>(
         &self,
         amd_ext_create_info: &AmdExtD3DCreateInfo,
@@ -67,6 +70,7 @@ impl AmdExtD3DDevice {
 
     /// # Safety
     /// Calls an unsafe function on the Windows API.
+    #[doc(alias = "PushMarker")]
     pub unsafe fn push_marker(
         &self,
         gfx_cmd_list: impl Param<Direct3D12::ID3D12GraphicsCommandList>,
@@ -78,6 +82,7 @@ impl AmdExtD3DDevice {
 
     /// # Safety
     /// Calls an unsafe function on the Windows API.
+    #[doc(alias = "PopMarker")]
     pub unsafe fn pop_marker(
         &self,
         gfx_cmd_list: impl Param<Direct3D12::ID3D12GraphicsCommandList>,
@@ -87,6 +92,7 @@ impl AmdExtD3DDevice {
 
     /// # Safety
     /// Calls an unsafe function on the Windows API.
+    #[doc(alias = "SetMarker")]
     pub unsafe fn set_marker(
         &self,
         gfx_cmd_list: impl Param<Direct3D12::ID3D12GraphicsCommandList>,
