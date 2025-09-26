@@ -17,7 +17,7 @@ Add this to your Cargo.toml:
 
 ```toml
 [dependencies]
-amd-ext-d3d = "0.3.1"
+amd-ext-d3d = "0.4.0"
 ```
 
 While [upstream documentation] details how to embed these calls into existing PIX3 markers (behind a C `#derive`), you get to call them explicitly in Rust:
