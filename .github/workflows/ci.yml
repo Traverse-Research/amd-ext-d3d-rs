@@ -11,14 +11,12 @@ jobs:
       - name: Cargo fmt
         run: cargo fmt --all -- --check
       - name: Cargo clippy
-        run: cargo clippy --workspace --all-targets -- -D warnings
+        run: cargo +stable clippy --workspace --all-targets -- -D warnings
       - name: Cargo test
         run: cargo test --workspace
 
       - name: Install nightly Rust
         uses: dtolnay/rust-toolchain@nightly
-        with:
-          components: clippy
 
       # Test minimal versions to ensure our version specifiers in Cargo.toml
       # define a correct lower-bound, including all version ranges for the
