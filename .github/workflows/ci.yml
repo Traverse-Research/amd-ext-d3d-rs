@@ -17,6 +17,8 @@ jobs:
 
       - name: Install nightly Rust
         uses: dtolnay/rust-toolchain@nightly
+        with:
+          components: clippy
 
       # Test minimal versions to ensure our version specifiers in Cargo.toml
       # define a correct lower-bound, including all version ranges for the
