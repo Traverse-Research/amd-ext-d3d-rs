@@ -6,6 +6,7 @@
         <AdditionalIncludes>AmdDxExt</AdditionalIncludes>
     </PropertyGroup>
     <ItemGroup>
+        <EmitterRsp Include="emitter.settings.rsp"/>
         <Partition Include="AmdExtD3D.cpp">
             <TraverseFiles>AmdDxExt/AmdExtD3D.h;AmdDxExt/AmdExtD3DDeviceApi.h;AmdExtD3DCommandListMarkerApi/AmdExtD3DCommandListMarker.h</TraverseFiles>
             <ExcludeFromCrossarch>true</ExcludeFromCrossarch>

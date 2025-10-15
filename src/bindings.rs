@@ -79,6 +79,8 @@ pub mod Amd {
                 )
                     -> windows_core::HRESULT,
             }
+            unsafe impl Send for IAmdExtD3DDevice {}
+            unsafe impl Sync for IAmdExtD3DDevice {}
             pub trait IAmdExtD3DDevice_Impl: windows_core::IUnknownImpl {
                 fn CreateGraphicsPipelineState(
                     &self,
@@ -201,6 +203,8 @@ pub mod Amd {
                     windows_core::PCSTR,
                 ),
             }
+            unsafe impl Send for IAmdExtD3DDevice1 {}
+            unsafe impl Sync for IAmdExtD3DDevice1 {}
             pub trait IAmdExtD3DDevice1_Impl: IAmdExtD3DDevice_Impl {
                 fn PushMarker(
                     &self,
@@ -326,6 +330,8 @@ pub mod Amd {
                 )
                     -> windows_core::HRESULT,
             }
+            unsafe impl Send for IAmdExtD3DFactory {}
+            unsafe impl Sync for IAmdExtD3DFactory {}
             pub trait IAmdExtD3DFactory_Impl: windows_core::IUnknownImpl {
                 fn CreateInterface(
                     &self,
