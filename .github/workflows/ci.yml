@@ -71,4 +71,4 @@ jobs:
           name: crate-source
           path: src/
       - name: Diff generated Rust code
-        run: test -z "$(git status --porcelain -- '!.windows')" || (echo "::error::Generated files are different, please regenerate with cargo run -p api_gen!"; git status; false)
+        run: test -z "$(git status --porcelain -- ':!.windows')" || (echo "::error::Generated files are different, please regenerate with cargo run -p api_gen!"; git status; false)
