@@ -65,6 +65,13 @@ const ROOT: &str = "Windows.Win32";
 /// Same prelude as `d3d12-agility`'s `api-gen`.
 const PRELUDE: &str = "#define SECURITY_WIN32\n#define WIN32_NO_STATUS\n#include <winsock2.h>\n#include <windows.h>\n#undef WIN32_NO_STATUS\n#include <ntstatus.h>";
 
+/// Emitted after [`PRELUDE`], before the AMD headers. `windows-clang` 0.100.0 maps an enum's fixed
+/// underlying type without canonicalizing it, so `enum AmdExtD3DStructType : UINT` falls back to
+/// `i32`. Spelling the typedef as its builtin type sidesteps that. `UINT` never appears in the
+/// generated metadata (it is resolved to `u32` either way), so this changes nothing else.
+/// Fixed upstream by https://github.com/microsoft/windows-rs/pull/5233; drop once released.
+const ENUM_BASE_TYPE_WORKAROUND: &str = "\n#define UINT unsigned int";
+
 fn main() {
     let time = std::time::Instant::now();
 
@@ -105,6 +112,7 @@ fn main() {
         .collect();
 
     let mut source = String::from(PRELUDE);
+    source.push_str(ENUM_BASE_TYPE_WORKAROUND);
     for header in HEADERS {
         source.push_str(&format!("\n#include <{header}>"));
     }

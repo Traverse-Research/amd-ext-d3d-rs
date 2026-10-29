@@ -15,7 +15,7 @@ mod Windows {
                 reserved: 31,
             },
         }
-        #[repr(i32)]
+        #[repr(u32)]
         enum AmdExtD3DStructType {
             AmdExtD3DStructUnknown = 0,
             AmdExtD3DStructPipelineState = 1,

@@ -36,7 +36,7 @@ impl AmdExtD3DPipelineFlags {
     }
 }
 pub const AmdExtD3DStructPipelineState: AmdExtD3DStructType = 1;
-pub type AmdExtD3DStructType = i32;
+pub type AmdExtD3DStructType = u32;
 pub const AmdExtD3DStructUnknown: AmdExtD3DStructType = 0;
 windows_core::imp::define_interface!(
     IAmdExtD3DCommandListMarker,
