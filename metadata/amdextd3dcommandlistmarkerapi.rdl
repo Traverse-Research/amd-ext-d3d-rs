@@ -1,0 +1,11 @@
+#[win32]
+mod Windows {
+    mod Win32 {
+        #[guid(0x735f1f3a_555d_4f70_ab92_7db4a3ab1d28)]
+        interface IAmdExtD3DCommandListMarker: IUnknown {
+            fn PushMarker(&self, pMarker: *const i8);
+            fn PopMarker(&self,);
+            fn SetMarker(&self, pMarker: *const i8);
+        }
+    }
+}

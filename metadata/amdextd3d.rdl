@@ -1,0 +1,10 @@
+#[win32]
+mod Windows {
+    mod Win32 {
+        #[guid(0x014937ec_9288_446f_a9ac_d75a8e3a984f)]
+        interface IAmdExtD3DFactory: IUnknown {
+            fn CreateInterface(&self, pOuter: IUnknown, riid: *const GUID, #[iid_is] ppvObject: *mut *mut void) -> HRESULT;
+        }
+        extern "C" fn PFNAmdExtD3DCreateInterface(pOuter: IUnknown, riid: *const GUID, ppvObject: *mut *mut void) -> HRESULT;
+    }
+}
