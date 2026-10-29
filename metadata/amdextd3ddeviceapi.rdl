@@ -1,0 +1,34 @@
+#[win32]
+mod Windows {
+    mod Win32 {
+        struct AmdExtD3DCreateInfo {
+            r#type: AmdExtD3DStructType,
+            pNext: *mut void,
+        }
+        struct AmdExtD3DPipelineCreateInfo {
+            Base: AmdExtD3DCreateInfo,
+            flags: AmdExtD3DPipelineFlags,
+        }
+        struct AmdExtD3DPipelineFlags {
+            _bitfield: u32 {
+                depthBoundsTestEnable: 1,
+                reserved: 31,
+            },
+        }
+        #[repr(i32)]
+        enum AmdExtD3DStructType {
+            AmdExtD3DStructUnknown = 0,
+            AmdExtD3DStructPipelineState = 1,
+        }
+        #[guid(0x8104c0fc_7413_410f_8e83_aa617e908648)]
+        interface IAmdExtD3DDevice: IUnknown {
+            fn CreateGraphicsPipelineState(&self, pAmdExtCreateInfo: *const AmdExtD3DCreateInfo, pDesc: *const D3D12_GRAPHICS_PIPELINE_STATE_DESC, riid: *const GUID, #[iid_is] ppPipelineState: *mut *mut void) -> HRESULT;
+        }
+        #[guid(0x4bbcaf68_eaf7_4fa4_b653_cb458c334a4e)]
+        interface IAmdExtD3DDevice1: IAmdExtD3DDevice {
+            fn PushMarker(&self, pGfxCmdList: ID3D12GraphicsCommandList, pMarker: *const i8);
+            fn PopMarker(&self, pGfxCmdList: ID3D12GraphicsCommandList);
+            fn SetMarker(&self, pGfxCmdList: ID3D12GraphicsCommandList, pMarker: *const i8);
+        }
+    }
+}
